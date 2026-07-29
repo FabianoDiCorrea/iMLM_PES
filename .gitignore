@@ -1,0 +1,20 @@
+# Ignores para C++ / Visual Studio / PES Binaries
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.suo
+*.user
+.vs/
+x64/
+Debug/
+Release/
+
+# Executáveis de Teste compilados
+MLM/*.exe
+PesEditLib/*.exe
+PesTransferTest/*.exe
+
+# Arquivos temporários de salvamento de teste
+EDIT_TEST_WRITE00000000
