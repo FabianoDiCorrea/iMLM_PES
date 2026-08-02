@@ -39,7 +39,7 @@ bool EditDatabase::Load(const std::string &filepath)
 
     m_descriptor = descriptor;
     m_raw_data = descriptor->data;
-    m_raw_size = raw_size;
+    m_raw_size = descriptor->fileHeader->dataSize;
 
     m_num_players = m_raw_data[0x60] + (m_raw_data[0x61] * 256);
     m_num_teams = m_raw_data[0x64] + (m_raw_data[0x65] * 256);
@@ -59,28 +59,48 @@ void EditDatabase::SyncRostersAndPlayers()
 
     for (uint32_t i = 0; i < m_num_teams; ++i) {
         int roster_start_byte = roster_byte;
-        teams[i].roster_offset = roster_start_byte;
         uint32_t roster_team_id = BinaryIO::read_data(0, 32, roster_byte, m_raw_data);
 
-        teams[i].player_count = 0;
-        for (int k = 0; k < 40; ++k) {
-            teams[i].players[k] = BinaryIO::read_data(0, 32, roster_byte, m_raw_data);
-            if (teams[i].players[k] != 0) {
-                teams[i].player_count++;
+        Team* pTargetTeam = nullptr;
+        int t_ind = -1;
+        for (size_t t = 0; t < teams.size(); ++t) {
+            if (teams[t].id == roster_team_id) {
+                t_ind = (int)t;
+                pTargetTeam = &teams[t];
+                break;
             }
         }
-        for (int k = 0; k < 40; ++k) {
-            teams[i].numbers[k] = (uint16_t)BinaryIO::read_data(0, 16, roster_byte, m_raw_data);
+
+        // Se o time estiver na lista de times (ou se index i corresponder)
+        if (!pTargetTeam && i < teams.size()) {
+            pTargetTeam = &teams[i];
+            t_ind = i;
         }
 
-        for (int k = 0; k < 40; ++k) {
-            if (teams[i].players[k] != 0) {
-                for (uint32_t p = 0; p < m_num_players; ++p) {
-                    if (players[p].id == teams[i].players[k]) {
-                        players[p].team_index = i;
-                        players[p].roster_slot = k;
-                        players[p].shirt_number = teams[i].numbers[k];
-                        break;
+        if (pTargetTeam) {
+            Team &target_team = *pTargetTeam;
+            target_team.roster_offset = roster_start_byte;
+            target_team.player_count = 0;
+
+            for (int k = 0; k < 40; ++k) {
+                target_team.players[k] = BinaryIO::read_data(0, 32, roster_byte, m_raw_data);
+                if (target_team.players[k] != 0) {
+                    target_team.player_count++;
+                }
+            }
+            for (int k = 0; k < 40; ++k) {
+                target_team.numbers[k] = (uint16_t)BinaryIO::read_data(0, 16, roster_byte, m_raw_data);
+            }
+
+            for (int k = 0; k < 40; ++k) {
+                if (target_team.players[k] != 0) {
+                    for (uint32_t p = 0; p < m_num_players; ++p) {
+                        if (players[p].id == target_team.players[k]) {
+                            players[p].team_index = t_ind;
+                            players[p].roster_slot = k;
+                            players[p].shirt_number = target_team.numbers[k];
+                            break;
+                        }
                     }
                 }
             }
@@ -93,6 +113,25 @@ void EditDatabase::SyncRostersAndPlayers()
 bool EditDatabase::Save(const std::string &filepath)
 {
     if (!m_descriptor) return false;
+
+    // Salvar modificações dos times no raw_data
+    uint8_t *data = m_raw_data;
+    if (data && m_num_teams > 0) {
+        auto& teams = m_team_manager->GetAll();
+        int current_byte = 0x8ED2FC;
+        for (uint32_t i = 0; i < m_num_teams; ++i) {
+            BinaryIO::write_team_entry(teams[i], current_byte, data);
+        }
+    }
+
+    // Salvar modificações dos jogadores no raw_data
+    if (data && m_num_players > 0) {
+        auto& players = m_player_manager->GetAll();
+        int current_byte = 0x7C;
+        for (uint32_t i = 0; i < m_num_players; ++i) {
+            BinaryIO::write_player_entry(players[i], current_byte, data);
+        }
+    }
 
     int output_size = 0;
     uint8_t *encrypted_output = encryptWithKey(static_cast<FileDescriptor*>(m_descriptor), &output_size, MasterKeyPes21);

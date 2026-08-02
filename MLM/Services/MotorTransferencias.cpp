@@ -139,4 +139,64 @@ RespostaTransferencia MotorTransferencias::AvaliarProposta(const PropostaTransfe
     return resposta;
 }
 
+std::vector<PropostaTransferencia> MotorTransferencias::GerarMercadoReativo(const std::vector<Clube>& clubes,
+                                                       const std::vector<Jogador>& todosJogadores,
+                                                       const std::vector<uint32_t>& clubesRebaixadosIds,
+                                                       const std::vector<uint32_t>& clubesCampeoesIds) const {
+    std::vector<PropostaTransferencia> propostasGeradas;
+
+    // 1. Reação a Clubes Rebaixados:
+    // Jogadores com Overall >= 78 em clubes rebaixados pedem pra sair e atraem propostas de clubes grandes
+    for (uint32_t rebaixadoId : clubesRebaixadosIds) {
+        for (const auto& jog : todosJogadores) {
+            if (jog.ObterClubeId() == rebaixadoId && jog.ObterOverall() >= 78) {
+                // Procura um clube comprador (não rebaixado e com boa reputação)
+                for (const auto& comprador : clubes) {
+                    bool eRebaixado = std::find(clubesRebaixadosIds.begin(), clubesRebaixadosIds.end(), comprador.ObterId()) != clubesRebaixadosIds.end();
+                    if (!eRebaixado && comprador.ObterId() != rebaixadoId && comprador.ObterReputacao() >= 75) {
+                        
+                        PropostaTransferencia prop;
+                        prop.jogadorId = jog.ObterId();
+                        prop.clubeVendedorId = rebaixadoId;
+                        prop.clubeCompradorId = comprador.ObterId();
+                        
+                        // Oferta com desconto porque o clube foi rebaixado (~15% a 20% abaixo da pedida)
+                        double valMercado = CalcularValorMercado(jog);
+                        prop.valorOferecido = valMercado * 0.85;
+                        prop.salarioOferecido = CalcularSalarioExigido(jog) * 1.1; // Oferece salário maior pro jogador aceitar sair
+                        prop.anosContratoOferecidos = 3;
+
+                        propostasGeradas.push_back(prop);
+                        break; // Uma proposta por jogador de destaque rebaixado
+                    }
+                }
+            }
+        }
+    }
+
+    // 2. Reação a Clubes Campeões:
+    // Campeões buscam jovens promessas (Potencial >= 84 e Idade <= 22) de outros clubes para se reforçarem
+    for (uint32_t campeaoId : clubesCampeoesIds) {
+        for (const auto& jog : todosJogadores) {
+            if (jog.ObterClubeId() != campeaoId && jog.ObterPotencial() >= 84 && jog.ObterIdade() <= 22) {
+                PropostaTransferencia prop;
+                prop.jogadorId = jog.ObterId();
+                prop.clubeVendedorId = jog.ObterClubeId();
+                prop.clubeCompradorId = campeaoId;
+                
+                // Campeão faz proposta agressiva com sobrepreço (+25%)
+                double valMercado = CalcularValorMercado(jog);
+                prop.valorOferecido = valMercado * 1.25;
+                prop.salarioOferecido = CalcularSalarioExigido(jog) * 1.2;
+                prop.anosContratoOferecidos = 4;
+
+                propostasGeradas.push_back(prop);
+                break; // Limita uma contratação de peso por campeão por janela
+            }
+        }
+    }
+
+    return propostasGeradas;
+}
+
 } // namespace MLM

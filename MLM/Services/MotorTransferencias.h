@@ -22,6 +22,12 @@ public:
                                           const Clube& clubeVendedor,
                                           const Clube& clubeComprador) const;
 
+    // Mercado Reativo: Gera propostas de IA baseadas em resultados da temporada (Rebaixados/Campeões)
+    std::vector<PropostaTransferencia> GerarMercadoReativo(const std::vector<Clube>& clubes,
+                                                           const std::vector<Jogador>& todosJogadores,
+                                                           const std::vector<uint32_t>& clubesRebaixadosIds,
+                                                           const std::vector<uint32_t>& clubesCampeoesIds) const;
+
 private:
     // Avaliações de Veto
     bool AvaliarDecisaoClube(const PropostaTransferencia& proposta,

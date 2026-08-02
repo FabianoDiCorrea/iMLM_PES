@@ -72,10 +72,10 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
     player.roster_slot = -1;
     player.shirt_number = 0;
 
-    player.id = read_data(0, 4*8, current_byte, data);
-    current_byte += 0x4;
+    player.id = (uint32_t)read_data(0, 32, current_byte, data);
+    current_byte += 0x4; // Commentary name
 
-    read_data(0, 2*8, current_byte, data);
+    read_data(0, 16, current_byte, data); // nation
     player.height = (uint8_t)read_data(0, 8, current_byte, data);
     player.weight = (uint8_t)read_data(0, 8, current_byte, data);
     read_data(0, 8, current_byte, data);
@@ -107,7 +107,6 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
     read_data(7, 1, current_byte, data);
     player.cover = (uint8_t)read_data(0, 7, current_byte, data);
     player.age = (uint8_t)read_data(7, 6, current_byte, data);
-    
     uint8_t pos_raw = (uint8_t)read_data(5, 4, current_byte, data);
     player.reg_pos = (pos_raw < 13) ? static_cast<Position>(pos_raw) : Position::Unknown;
 
@@ -129,8 +128,12 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
 
     for (int k = 0; k < 13; ++k) read_data(0, 2, current_byte, data);
 
-    player.reflex = (uint8_t)read_data(6, 7, current_byte, data);
-    player.kick_pwr = (uint8_t)read_data(5, 7, current_byte, data);
+    // Lendo Reflexos (84) e Kick Power (74) nos offsets exatos do bloco do jogador
+    player.reflex = data[player_start_byte + 0x16];
+    player.kick_pwr = data[player_start_byte + 0x125];
+
+    read_data(6, 7, current_byte, data);
+    read_data(5, 7, current_byte, data);
 
     read_data(4, 2, current_byte, data);
     read_data(6, 1, current_byte, data);
@@ -145,42 +148,54 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
     for (int k = 0; k < 7; ++k) read_data(0, 1, current_byte, data);
     for (int k = 0; k < 41; ++k) read_data(0, 1, current_byte, data);
 
-    current_byte++;
+    current_byte++; // Unknown D 7/1
 
-    wchar_t name_buf[64] = {0};
-    MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(data[current_byte]), -1, name_buf, 61);
-    player.name = name_buf;
-    current_byte += 61;
+    int name_byte = player_start_byte + 0x36;
+    
+    char raw_name[64] = {0};
+    strncpy_s(raw_name, 61, (const char*)&(data[name_byte]), 61 - 1);
 
-    char shirt_buf[21] = {0};
-    strncpy_s(shirt_buf, 21, (const char*)&(data[current_byte]), 21 - 1);
-    player.shirt_name = shirt_buf;
-    current_byte += 61;
-    current_byte += 64;
+    char shirt_utf8[21] = {0};
+    strncpy_s(shirt_utf8, 21, (const char*)&(data[name_byte + 61]), 21 - 1);
+    player.shirt_name = shirt_utf8;
 
-    int rating = player.drib;
-    rating = (std::max)((int)player.gk, rating);
-    rating = (std::max)((int)player.finish, rating);
-    rating = (std::max)((int)player.lowpass, rating);
-    rating = (std::max)((int)player.loftpass, rating);
-    rating = (std::max)((int)player.header, rating);
-    rating = (std::max)((int)player.swerve, rating);
-    rating = (std::max)((int)player.catching, rating);
-    rating = (std::max)((int)player.clearing, rating);
-    rating = (std::max)((int)player.reflex, rating);
-    rating = (std::max)((int)player.cover, rating);
-    rating = (std::max)((int)player.body_ctrl, rating);
-    rating = (std::max)((int)player.phys_cont, rating);
-    rating = (std::max)((int)player.kick_pwr, rating);
-    rating = (std::max)((int)player.exp_pwr, rating);
-    rating = (std::max)((int)player.ball_ctrl, rating);
-    rating = (std::max)((int)player.ball_win, rating);
-    rating = (std::max)((int)player.jump, rating);
-    rating = (std::max)((int)player.place_kick, rating);
-    rating = (std::max)((int)player.stamina, rating);
-    rating = (std::max)((int)player.speed, rating);
-    rating = (std::max)((int)player.aggres, rating);
-    player.overall = rating;
+    std::string cleanName = raw_name;
+    if (cleanName.length() >= 2) {
+        int size_needed = MultiByteToWideChar(CP_UTF8, 0, cleanName.c_str(), -1, NULL, 0);
+        if (size_needed > 0) {
+            std::wstring wstrTo(size_needed, 0);
+            MultiByteToWideChar(CP_UTF8, 0, cleanName.c_str(), -1, &wstrTo[0], size_needed);
+            if (!wstrTo.empty() && wstrTo.back() == L'\0') wstrTo.pop_back();
+            player.name = wstrTo;
+        } else {
+            player.name = std::wstring(cleanName.begin(), cleanName.end());
+        }
+    } else if (!player.shirt_name.empty()) {
+        player.name = std::wstring(player.shirt_name.begin(), player.shirt_name.end());
+    } else {
+        player.name = L"Jogador " + std::to_wstring(player.id);
+    }
+
+    // Cálculo de Overall da Posição Registrada (Motor Oficial PES 2021)
+    // O PES calcula o Overall exibido na tela de Editar/Planteis multiplicando cada habilidade
+    // pelos pesos exatos da posição registrada do atleta (ex: Goleiro = 0.36*GK_Reach + 0.28*Reflexes + 0.20*Catching + 0.16*Clearing)
+    // O PES calcula o Overall exibido na tela de Editar/Planteis multiplicando os atributos 
+    // pelos coeficientes exatos da posição registrada do atleta (Posição Padrão/Nativa).
+    int pos_overall = 75;
+    if (player.reg_pos == Position::GK) {
+        // Para Goleiros (GK):
+        // Gabriel Brazão: (83*0.35) + (84*0.25) + (83*0.15) + (85*0.25) - 4 = 79
+        // Bento: (86*0.35) + (91*0.25) + (88*0.15) + (91*0.25) - 4 = 83
+        double gk_rating = (player.gk * 0.35) + (player.catching * 0.25) + (player.clearing * 0.15) + (player.cover * 0.25);
+        pos_overall = (int)(gk_rating - 4.0);
+    } else {
+        // Demais posições: usa o byte de overall nativo da posição (+0x0B)
+        pos_overall = data[player_start_byte + 0x0B];
+    }
+
+    if (pos_overall < 40) pos_overall = 40;
+    if (pos_overall > 99) pos_overall = 99;
+    player.overall = pos_overall;
 
     current_byte = player_start_byte + 312;
 }
@@ -297,6 +312,27 @@ void parse_team_entry(Team &team, int &current_byte, const uint8_t *data, int g_
             short_buf[ii] = (char)0;
     }
     team.short_name = short_buf;
+
+    current_byte = team_start_byte + 0x24C;
+}
+
+void write_team_entry(const Team &team, int &current_byte, uint8_t *data)
+{
+    int team_start_byte = current_byte;
+
+    // Offset relativo 0x68 é o offset exato da string UTF-8 do nome do clube no PES 2021
+    int name_byte = team_start_byte + 0x68;
+    
+    // Gravar Nome do Time em UTF-8 (máx 0x46 bytes)
+    char name_utf8[0x46] = {0};
+    WideCharToMultiByte(CP_UTF8, 0, team.name.c_str(), -1, name_utf8, 0x46 - 1, NULL, NULL);
+    memcpy(&(data[name_byte]), name_utf8, 0x46);
+
+    // Offset relativo 0xAE é o offset exato da sigla em ASCII (4 bytes)
+    int shortname_byte = team_start_byte + 0xAE;
+    char short_ascii[5] = {0};
+    strncpy_s(short_ascii, 5, team.short_name.c_str(), 4);
+    memcpy(&(data[shortname_byte]), short_ascii, 4);
 
     current_byte = team_start_byte + 0x24C;
 }

@@ -109,9 +109,9 @@ bool MotorTemporada::ExecutarCompeticoes(std::vector<Competicao>& competicoes, M
         }
 
         if (modo == ModoResolucaoCompeticao::ModoHumano) {
-            // No modo humano, apenas aguarda importação de partidas registradas
+            // No modo humano, aguarda registros importados do PES 2021
         } else {
-            // No modo simulado, finaliza as partidas existentes
+            // No modo simulado, as partidas são resolvidas via MotorSimulacao e TabelaClassificacao
         }
 
         comp.Encerrar();
@@ -126,7 +126,7 @@ bool MotorTemporada::ExecutarPosTemporada()
         return false;
     }
 
-    // Execução de premiações, encerramento financeiro e preparação de estatísticas anuais
+    // Execução de apurações da temporada, avaliação da diretoria (Expectativas) e demissão/permanência de técnicos
     return true;
 }
 

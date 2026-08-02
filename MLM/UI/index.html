@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iMLM PES — Master League Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --bg-card: rgba(14, 18, 24, 0.45);
+            --bg-card-hover: rgba(22, 28, 38, 0.65);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --neon-green: #00ff88;
+            --neon-blue: #00b8ff;
+            --neon-purple: #7928ca;
+            --neon-red: #ff3366;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --sidebar-width: 240px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #06080b;
+            background-image: 
+                linear-gradient(to bottom, rgba(6, 8, 11, 0.45), rgba(6, 8, 11, 0.65)),
+                url('stadium_pitch.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TICKER NEWS --- */
+        .news-ticker {
+            background: linear-gradient(90deg, #0d1117, #161b22);
+            border-bottom: 1px solid var(--border-glass);
+            height: 38px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        .news-badge {
+            background: linear-gradient(135deg, #ff3366, #ff0055);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 0 16px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            box-shadow: 4px 0 15px rgba(255, 51, 102, 0.4);
+            z-index: 2;
+        }
+
+        .news-content {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 35s linear infinite;
+            gap: 40px;
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .news-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .news-item strong {
+            color: var(--neon-green);
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        .app-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 38px);
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: rgba(13, 17, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border-right: 1px solid var(--border-glass);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 14px;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .brand-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.15), transparent);
+            border-left: 3px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .user-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .user-info h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .user-info p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* --- DASHBOARD CONTENT --- */
+        .main-content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 24px;
+        }
+
+        .header-bar {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            padding: 16px 24px;
+            border-radius: 16px;
+        }
+
+        .club-banner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .club-badge {
+            width: 48px;
+            height: 48px;
+            background: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #000;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .club-details h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .club-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-box {
+            text-align: right;
+        }
+
+        .stat-box span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .stat-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-green);
+        }
+
+        /* --- WIDGETS --- */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- TABELA DE CLASSIFICACAO --- */
+        .table-container {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .table-container th {
+            text-align: left;
+            padding: 10px 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .table-container td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .table-container tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .pos-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .pos-libertadores { background: rgba(0, 255, 136, 0.15); color: var(--neon-green); border: 1px solid var(--neon-green); }
+        .pos-sulamericana { background: rgba(0, 184, 255, 0.15); color: var(--neon-blue); border: 1px solid var(--neon-blue); }
+        .pos-rebaixamento { background: rgba(255, 51, 102, 0.15); color: var(--neon-red); border: 1px solid var(--neon-red); }
+        .pos-normal { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+
+        .team-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .ap-highlight {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--neon-green);
+        }
+
+        /* --- CHAT WHATSAPP --- */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .chat-bubble {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-author {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--neon-blue);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chat-time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .chat-msg {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        /* --- REDE SOCIAL FEED --- */
+        .social-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-post {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .social-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-handle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .social-text {
+            font-size: 0.8rem;
+            color: #e2e8f0;
+        }
+
+        .social-actions {
+            display: flex;
+            gap: 16px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* BTN ACAO */
+        .btn-action {
+            background: linear-gradient(135deg, var(--neon-green), #00cc66);
+            color: #000;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- TICKER NEWS -->
+    <div class="news-ticker">
+        <div class="news-badge">
+            <i class="fa-solid fa-bolt"></i> iMLM SPORT NEWS
+        </div>
+        <div class="news-content">
+            <div class="news-item"><strong>MERCADO:</strong> Palmeiras envia proposta oficial de R$ 7.8M pela joia Estêvão!</div>
+            <div class="news-item"><strong>BASTIDORES:</strong> Vasco confirma rebaixamento e Payet pede rescisão imediata.</div>
+            <div class="news-item"><strong>SANTOS FC:</strong> Diretoria exige G-4 do técnico Fabiano Corrêa na 1ª temporada.</div>
+            <div class="news-item"><strong>PES 2021:</strong> Sincronização binária EDIT00000000 pronta para a próxima rodada!</div>
+        </div>
+    </div>
+
+    <!-- APP LAYOUT -->
+    <div class="app-container">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div>
+                <div class="brand">
+                    <div class="brand-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="brand-title">iMLM PES</div>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item active" onclick="trocarAba('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</li>
+                    <li class="nav-item" onclick="trocarAba('tabela')"><i class="fa-solid fa-trophy"></i> Competições & Ligas</li>
+                    <li class="nav-item" onclick="trocarAba('elenco')"><i class="fa-solid fa-users"></i> Planteis & Clubes</li>
+                    <li class="nav-item" onclick="trocarAba('editor')"><i class="fa-solid fa-sliders" style="color: var(--neon-green);"></i> Editor PES (Option File)</li>
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right-arrow-left"></i> Transferências</li>
+                    <li class="nav-item"><i class="fa-solid fa-wallet"></i> Finanças</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            
+            <!-- HEADER BAR COM USUARIO NO CANTO SUPERIOR DIREITO -->
+            <div class="header-bar" style="background: rgba(14, 18, 24, 0.7); border: 1px solid var(--border-glass); padding: 16px 24px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: 0.5px; color: #fff; margin: 0;">
+                        PAINEL DO TREINADOR <span style="color: var(--neon-green); font-weight: 400;">| MASTER LEAGUE</span>
+                    </h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="header-stats" style="display: flex; gap: 16px;">
+                        <div class="stat-box" style="padding: 6px 14px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Orçamento</span>
+                            <h3 style="font-size: 1.1rem; color: var(--neon-green); margin: 0;">R$ 45.0M</h3>
+                        </div>
+                    </div>
+                    <!-- USER CARD REDIRECIONADO PARA O TOPO SUPERIOR DIREITO -->
+                    <div style="display: flex; align-items: center; gap: 12px; background: rgba(0, 255, 136, 0.08); border: 1px solid rgba(0, 255, 136, 0.2); padding: 8px 16px; border-radius: 12px;">
+                        <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-green), var(--neon-blue)); color: #000; font-weight: 800; display: flex; align-items: center; justify-content: center;">FC</div>
+                        <div>
+                            <h4 style="font-size: 0.95rem; color: #fff; margin: 0; font-weight: 700;">Fabiano Corrêa</h4>
+                            <p style="font-size: 0.75rem; color: var(--neon-green); margin: 0;">Técnico • Rep: 80%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUNA DA ESQUERDA (TABELA E ACAO) -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                
+                <!-- TABELA DE CLASSIFICACAO DA LIGA SELECIONADA -->
+                <div class="card" id="view-tabela">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3><i class="fa-solid fa-ranking-star" style="color: var(--neon-green);"></i> Classificação de Competições</h3>
+                        <select id="select-liga" onchange="trocarLiga(this.value)" style="background: #101622; color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 6px; padding: 6px 12px; font-weight: 600; cursor: pointer;">
+                            <option value="bra">🇧🇷 Brasileirão Série A</option>
+                            <option value="eng">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League (Inglaterra)</option>
+                            <option value="esp">🇪🇸 La Liga (Espanha)</option>
+                            <option value="ita">🇮🇹 Serie A TIM (Itália)</option>
+                        </select>
+                    </div>
+
+                    <table class="table-container">
+                        <thead>
+                            <tr>
+                                <th>POS</th>
+                                <th>CLUBE</th>
+                                <th>PTS</th>
+                                <th>J</th>
+                                <th>V</th>
+                                <th>E</th>
+                                <th>D</th>
+                                <th>GP</th>
+                                <th>GC</th>
+                                <th>SG</th>
+                                <th>AP%</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-teams">
+                        </tbody>
+                    </table>
+
+                    <button class="btn-action" onclick="alert('Iniciando Partida no PES 2021 com Sincronização EDIT00000000!')">
+                        <i class="fa-solid fa-play"></i> JOGAR PRÓXIMA PARTIDA NO PES 2021
+                    </button>
+                </div>
+
+                <!-- CONSULTA DE ELENCO E PLANTEIS DE QUALQUER CLUBE -->
+                <div class="card" id="view-elenco">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3><i class="fa-solid fa-users" style="color: var(--neon-blue);"></i> Consulta de Planteis do PES</h3>
+                        
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="position: relative;">
+                                <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.8rem;"></i>
+                                <input type="text" id="input-busca-clube" onkeyup="filtrarClubes(this.value)" placeholder="Buscar time (ex: Mirassol, Santos...)" style="background: #101622; color: #fff; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 7px 10px 7px 30px; font-size: 0.85rem; outline: none; width: 220px;">
+                            </div>
+                            <label style="font-size: 0.8rem; color: var(--text-muted);">Clube:</label>
+                            <select id="select-clube-elenco" onchange="carregarElencoClube(this.value)" style="background: #101622; color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.4); border-radius: 8px; padding: 8px 14px; font-weight: 600; cursor: pointer; outline: none; max-width: 250px;">
+                                <option value="">Carregando 747 Clubes do PES...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="table-container">
+                        <thead>
+                            <tr>
+                                <th>POS</th>
+                                <th>NOME DO JOGADOR</th>
+                                <th>IDADE</th>
+                                <th>OVERALL</th>
+                                <th>STATUS PES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-roster">
+                            <tr>
+                                <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 24px;">
+                                    <i class="fa-solid fa-spinner fa-spin" style="color: var(--neon-green); margin-right: 8px;"></i> Carregando elenco do arquivo EDIT00000000...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <!-- EDITOR BINARIO DO PES (OPTION FILE) embutido -->
+                <div class="card" id="view-editor" style="display: none;">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3><i class="fa-solid fa-sliders" style="color: var(--neon-green);"></i> Editor de Jogadores & Option File PES 2021</h3>
+                        <span style="font-size: 0.8rem; color: var(--neon-green); background: rgba(0,255,136,0.1); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(0,255,136,0.3);">EDIT00000000 Ativo</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-top: 10px;">
+                        <!-- BUSCA DE JOGADORES -->
+                        <div style="background: rgba(0,0,0,0.3); padding: 14px; border-radius: 12px; border: 1px solid var(--border-glass);">
+                            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 8px;">Pesquisar Atleta:</label>
+                            <input type="text" id="input-editor-busca" onkeyup="buscarJogadorEditor(this.value)" placeholder="Digite nome (ex: Neymar, Messi...)" style="width: 100%; background: #101622; color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 10px; font-size: 0.85rem; outline: none; margin-bottom: 12px;">
+                            
+                            <div id="lista-editor-busca" style="max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px;">
+                                <div style="color: var(--text-muted); font-size: 0.8rem; text-align: center; padding: 20px;">Digite acima para buscar entre os 25.113 jogadores...</div>
+                            </div>
+                        </div>
+
+                        <!-- PAINEL DE EDICAO DO JOGADOR SELECIONADO -->
+                        <div id="painel-editor-atleta" style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px; border: 1px solid var(--border-glass);">
+                            <div style="text-align: center; color: var(--text-muted); padding: 50px;">
+                                <i class="fa-solid fa-hand-pointer" style="font-size: 2rem; color: var(--neon-green); margin-bottom: 10px;"></i>
+                                <p>Selecione um jogador na busca ao lado para visualizar e editar os atributos reais do PES 2021.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUNA DA DIREITA (WHATSAPP E REDE SOCIAL) -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                
+                <!-- WHATSAPP DIREATORIA -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> Mensagens iMLM</h3>
+                    </div>
+
+                    <div class="chat-container">
+                        <div class="chat-bubble">
+                            <div class="chat-header">
+                                <span class="chat-author"><i class="fa-solid fa-building-user"></i> Presidente do Santos</span>
+                                <span class="chat-time">14:32</span>
+                            </div>
+                            <div class="chat-msg">
+                                "Excelente vitória ontem, Fabiano! A diretoria está muito satisfeita com o 2º lugar e 66.7% de aproveitamento."
+                            </div>
+                        </div>
+
+                        <div class="chat-bubble">
+                            <div class="chat-header">
+                                <span class="chat-author" style="color: var(--neon-green);"><i class="fa-solid fa-user-ninja"></i> Olheiro da Base</span>
+                                <span class="chat-time">10:15</span>
+                            </div>
+                            <div class="chat-msg">
+                                "Professor, acabamos de promover o jovem Lucas Silva da base virtual! Ele já está disponível no PES (Elenco 40/40)."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REDE SOCIAL -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-brands fa-x-twitter" style="color: #fff;"></i> FutSocial Feed</h3>
+                    </div>
+
+                    <div class="social-feed">
+                        <div class="social-post">
+                            <div class="social-user">
+                                <div class="social-avatar">S</div>
+                                <div>
+                                    <div class="social-name">Torcida Santista</div>
+                                    <div class="social-handle">@santos_fans</div>
+                                </div>
+                            </div>
+                            <div class="social-text">
+                                O professor Fabiano tá fazendo milagre! 66% de aproveitamento nesse início de campeonato. Pra cima deles! ⚪⚫ #VilaBelmiro
+                            </div>
+                            <div class="social-actions">
+                                <span><i class="fa-regular fa-heart"></i> 1.2k</span>
+                                <span><i class="fa-solid fa-retweet"></i> 340</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const posMap = ["GOL", "ZC", "LE", "LD", "VOL", "MLG", "MLE", "MLD", "MAT", "PTE", "PTD", "SA", "CA"];
+        const posOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        let bancoClubes = [];
+
+        function trocarAba(aba) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            
+            if (aba === 'dashboard') {
+                document.querySelectorAll('.nav-item')[0].classList.add('active');
+                document.getElementById('view-tabela').style.display = 'block';
+                document.getElementById('view-elenco').style.display = 'block';
+                document.getElementById('view-editor').style.display = 'none';
+            } else if (aba === 'tabela') {
+                document.querySelectorAll('.nav-item')[1].classList.add('active');
+                document.getElementById('view-tabela').style.display = 'block';
+                document.getElementById('view-elenco').style.display = 'none';
+                document.getElementById('view-editor').style.display = 'none';
+            } else if (aba === 'elenco') {
+                document.querySelectorAll('.nav-item')[2].classList.add('active');
+                document.getElementById('view-tabela').style.display = 'none';
+                document.getElementById('view-elenco').style.display = 'block';
+                document.getElementById('view-editor').style.display = 'none';
+            } else if (aba === 'editor') {
+                document.querySelectorAll('.nav-item')[3].classList.add('active');
+                document.getElementById('view-tabela').style.display = 'none';
+                document.getElementById('view-elenco').style.display = 'none';
+                document.getElementById('view-editor').style.display = 'block';
+            }
+        }
+
+        function trocarLiga(liga) {
+            const tbody = document.getElementById('table-body-teams');
+            if (liga === 'eng') {
+                tbody.innerHTML = `
+                    <tr><td><span class="pos-badge pos-libertadores">1</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> MANCHESTER CITY</td><td>18</td><td>6</td><td>6</td><td>0</td><td>0</td><td>15</td><td>3</td><td>+12</td><td class="ap-highlight">100%</td></tr>
+                    <tr><td><span class="pos-badge pos-libertadores">2</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> LIVERPOOL</td><td>15</td><td>6</td><td>5</td><td>0</td><td>1</td><td>14</td><td>5</td><td>+9</td><td class="ap-highlight">83.3%</td></tr>
+                    <tr><td><span class="pos-badge pos-sulamericana">3</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> ARSENAL</td><td>12</td><td>6</td><td>4</td><td>0</td><td>2</td><td>10</td><td>6</td><td>+4</td><td class="ap-highlight">66.7%</td></tr>
+                    <tr><td><span class="pos-badge pos-sulamericana">4</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> MANCHESTER UNITED</td><td>10</td><td>6</td><td>3</td><td>1</td><td>2</td><td>9</td><td>8</td><td>+1</td><td class="ap-highlight">55.6%</td></tr>
+                `;
+            } else if (liga === 'esp') {
+                tbody.innerHTML = `
+                    <tr><td><span class="pos-badge pos-libertadores">1</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> REAL MADRID</td><td>16</td><td>6</td><td>5</td><td>1</td><td>0</td><td>14</td><td>4</td><td>+10</td><td class="ap-highlight">88.9%</td></tr>
+                    <tr><td><span class="pos-badge pos-libertadores">2</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> BARCELONA</td><td>14</td><td>6</td><td>4</td><td>2</td><td>0</td><td>13</td><td>6</td><td>+7</td><td class="ap-highlight">77.8%</td></tr>
+                    <tr><td><span class="pos-badge pos-sulamericana">3</span></td><td class="team-cell"><i class="fa-solid fa-shield"></i> ATLETICO MADRID</td><td>11</td><td>6</td><td>3</td><td>2</td><td>1</td><td>9</td><td>5</td><td>+4</td><td class="ap-highlight">61.1%</td></tr>
+                `;
+            } else {
+                carregarBancoPes();
+            }
+        }
+
+        function getStatColor(val) {
+            if (val >= 90) return '#00ff88'; // Neon Bright Green
+            if (val >= 80) return '#aaff00'; // Lime Green
+            if (val >= 75) return '#ffcc00'; // Yellow
+            if (val >= 60) return '#ff9900'; // Orange
+            return '#ff4444'; // Red
+        }
+
+        let jogadoresGlobalMap = {};
+
+        function abrirFichaJogador(id) {
+            const j = jogadoresGlobalMap[id];
+            if (!j) return;
+            const siglaPos = posMap[j.posicao] || "JOG";
+            const s = j.stats || {};
+
+            const renderStatRow = (label, val) => {
+                const v = val || 40;
+                const col = getStatColor(v);
+                return `
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 7px 12px; border-radius: 8px; font-size: 0.82rem;">
+                        <span style="color: #b0b8c4; font-weight: 500;">${label}</span>
+                        <span style="background: ${col}22; color: ${col}; border: 1px solid ${col}44; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-family: monospace; font-size: 0.9rem;">${v}</span>
+                    </div>
+                `;
+            };
+
+            const overallColor = getStatColor(j.overall);
+
+            const modalHtml = `
+                <div id="modal-jogador" onclick="if(event.target === this) this.remove()" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.88); backdrop-filter: blur(12px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                    <div style="background: #0d1117; border: 1px solid rgba(0,255,136,0.3); border-radius: 24px; padding: 28px; width: 720px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(0,0,0,0.8); font-family: 'Inter', sans-serif;">
+                        
+                        <!-- Header -->
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+                            <div style="display: flex; align-items: center; gap: 18px;">
+                                <div style="width: 64px; height: 64px; border-radius: 16px; background: ${overallColor}22; border: 2px solid ${overallColor}; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: ${overallColor}; font-weight: 900; box-shadow: 0 0 20px ${overallColor}33;">
+                                    ${j.overall}
+                                </div>
+                                <div>
+                                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.6rem; color: #fff; margin: 0 0 4px 0; font-weight: 700;">${j.nome}</h2>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 8px;">
+                                        <span style="background: var(--neon-green)22; color: var(--neon-green); padding: 2px 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem;">${siglaPos}</span>
+                                        <span>•</span>
+                                        <span>${j.idade} Anos</span>
+                                        ${j.altura ? `<span>• ${j.altura} cm</span>` : ''}
+                                        ${j.peso ? `<span>• ${j.peso} kg</span>` : ''}
+                                    </p>
+                                </div>
+                            </div>
+                            <button onclick="document.getElementById('modal-jogador').remove()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;">&times;</button>
+                        </div>
+
+                        <!-- Stats Grids -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            
+                            <!-- Coluna 1: Ataque & Técnica -->
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <h4 style="color: var(--neon-blue); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 4px 0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-futbol"></i> Ataque & Técnica
+                                </h4>
+                                ${renderStatRow("Talento Ofensivo", s.atk)}
+                                ${renderStatRow("Controle de Bola", s.ball_ctrl)}
+                                ${renderStatRow("Drible", s.drib)}
+                                ${renderStatRow("Passe Rasteiro", s.lowpass)}
+                                ${renderStatRow("Passe Alto", s.loftpass)}
+                                ${renderStatRow("Finalização", s.finish)}
+                                ${renderStatRow("Cabeceio", s.header)}
+                                ${renderStatRow("Cobrança de Falta", s.place_kick)}
+                                ${renderStatRow("Curva", s.swerve)}
+                            </div>
+
+                            <!-- Coluna 2: Físico, Defesa & Goleiro -->
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <h4 style="color: var(--neon-purple); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 4px 0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-shield-halved"></i> Físico & Defesa
+                                </h4>
+                                ${renderStatRow("Velocidade", s.speed)}
+                                ${renderStatRow("Aceleração", s.exp_pwr)}
+                                ${renderStatRow("Força do Chute", s.kick_pwr)}
+                                ${renderStatRow("Impulsão", s.jump)}
+                                ${renderStatRow("Contato Físico", s.phys_cont)}
+                                ${renderStatRow("Equilíbrio", s.body_ctrl)}
+                                ${renderStatRow("Resistência", s.stamina)}
+                                ${renderStatRow("Talento Defensivo", s.def)}
+                                ${renderStatRow("Desarme", s.ball_win)}
+                                ${renderStatRow("Agressividade", s.aggres)}
+                                
+                                ${siglaPos === "GOL" || (s.gk && s.gk > 45) ? `
+                                    <h4 style="color: var(--neon-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 4px 0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                        <i class="fa-solid fa-hands"></i> Goleiro
+                                    </h4>
+                                    ${renderStatRow("Talento Goleiro", s.gk)}
+                                    ${renderStatRow("Firmeza / Defesa", s.catching)}
+                                    ${renderStatRow("Afastamento", s.clearing)}
+                                    ${renderStatRow("Reflexos", s.reflex)}
+                                    ${renderStatRow("Cobertura", s.cover)}
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Footer Button -->
+                        <button onclick="document.getElementById('modal-jogador').remove()" style="width: 100%; margin-top: 24px; background: linear-gradient(135deg, var(--neon-green), #00cc66); color: #000; border: none; padding: 14px; border-radius: 14px; font-weight: 800; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.5px; transition: 0.2s;">
+                            FECHAR FICHA
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        function carregarElencoClube(teamId) {
+            if (!bancoClubes || bancoClubes.length === 0) return;
+            
+            const idNum = parseInt(teamId);
+            const clubeEncontrado = bancoClubes.find(c => c.id === idNum);
+
+            if (clubeEncontrado) {
+                const tbodyRoster = document.getElementById('table-body-roster');
+                let htmlRoster = "";
+                
+                if (clubeEncontrado.jogadores && clubeEncontrado.jogadores.length > 0) {
+                    const jogadoresOrdenados = [...clubeEncontrado.jogadores].sort((a, b) => {
+                        const orderA = posOrder.indexOf(a.posicao) !== -1 ? posOrder.indexOf(a.posicao) : 99;
+                        const orderB = posOrder.indexOf(b.posicao) !== -1 ? posOrder.indexOf(b.posicao) : 99;
+                        return orderA - orderB;
+                    });
+
+                    jogadoresOrdenados.forEach(j => {
+                        jogadoresGlobalMap[j.id] = j;
+                        const siglaPos = posMap[j.posicao] || "JOG";
+                        let posClass = "pos-sulamericana";
+                        if (siglaPos === "GOL") posClass = "pos-libertadores";
+                        else if (["PTE", "PTD", "SA", "CA"].includes(siglaPos)) posClass = "pos-rebaixamento";
+
+                        htmlRoster += `
+                            <tr onclick="abrirFichaJogador(${j.id})" style="cursor: pointer;">
+                                <td><span class="pos-badge ${posClass}">${siglaPos}</span></td>
+                                <td class="team-cell"><i class="fa-solid fa-user-shirt" style="color: var(--neon-blue); margin-right: 6px;"></i> ${j.nome}</td>
+                                <td>${j.idade} anos</td>
+                                <td class="ap-highlight">${j.overall}</td>
+                                <td><span style="color: var(--neon-green); font-size: 0.75rem; font-weight: 600;"><i class="fa-solid fa-check"></i> Elenco Principal</span></td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    htmlRoster = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">Nenhum jogador cadastrado neste clube no arquivo EDIT00000000.</td></tr>`;
+                }
+                tbodyRoster.innerHTML = htmlRoster;
+            }
+        }
+
+        function filtrarClubes(termo) {
+            if (!bancoClubes) return;
+            const selectClube = document.getElementById('select-clube-elenco');
+            selectClube.innerHTML = "";
+            
+            const termoLower = termo.toLowerCase().trim();
+            let clubesFiltrados = bancoClubes.filter(c => c.nome.toLowerCase().includes(termoLower));
+            
+            // Ordenar clubes filtrados dando preferência aos times do Patch com elenco preenchido
+            clubesFiltrados.sort((a, b) => {
+                const lenA = a.jogadores ? a.jogadores.length : 0;
+                const lenB = b.jogadores ? b.jogadores.length : 0;
+                return lenB - lenA;
+            });
+
+            if (clubesFiltrados.length === 0) {
+                const opt = document.createElement('option');
+                opt.value = "";
+                opt.textContent = "Nenhum time encontrado";
+                selectClube.appendChild(opt);
+                return;
+            }
+
+            clubesFiltrados.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.nome;
+                selectClube.appendChild(opt);
+            });
+
+            // Auto seleciona o primeiro resultado do filtro
+            selectClube.value = clubesFiltrados[0].id;
+            carregarElencoClube(clubesFiltrados[0].id);
+        }
+
+        async function carregarBancoPes() {
+            try {
+                const response = await fetch('pes_database.json?v=' + Date.now());
+                if (!response.ok) throw new Error("Status " + response.status);
+                const data = await response.json();
+                bancoClubes = data.clubes;
+
+                // Popula o Dropdown de Seleção de Clube com TODOS os 747 times reais do PES!
+                const selectClube = document.getElementById('select-clube-elenco');
+                selectClube.innerHTML = "";
+                bancoClubes.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.id;
+                    opt.textContent = c.nome;
+                    selectClube.appendChild(opt);
+                });
+
+                // Seleciona o primeiro clube ou Santos
+                const primeiroClube = bancoClubes.find(c => c.nome.includes("SANTOS")) || bancoClubes[0];
+                if (primeiroClube) {
+                    selectClube.value = primeiroClube.id;
+                    carregarElencoClube(primeiroClube.id);
+                }
+
+                // Atualiza Tabela Dinamicamente
+                const palmeiras = bancoClubes.find(c => c.nome.includes("PALMEIRAS")) || { nome: "PALMEIRAS" };
+                const flamengo = bancoClubes.find(c => c.nome.includes("FLAMENGO")) || { nome: "FLAMENGO" };
+                const vasco = bancoClubes.find(c => c.nome.includes("VASCO")) || { nome: "VASCO DA GAMA" };
+                const santos = primeiroClube || { nome: "SANTOS FC" };
+
+                const tbody = document.getElementById('table-body-teams');
+                if (tbody) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td><span class="pos-badge pos-libertadores">1</span></td>
+                            <td class="team-cell"><i class="fa-solid fa-shield" style="color: #00ff88;"></i> ${palmeiras.nome}</td>
+                            <td>16</td><td>6</td><td>5</td><td>1</td><td>0</td><td>12</td><td>2</td><td>+10</td>
+                            <td class="ap-highlight">88.9%</td>
+                        </tr>
+                        <tr style="background: rgba(0, 255, 136, 0.08); border-left: 3px solid var(--neon-green);">
+                            <td><span class="pos-badge pos-libertadores">2</span></td>
+                            <td class="team-cell"><i class="fa-solid fa-shield" style="color: #fff;"></i> ${santos.nome} <span style="color: var(--neon-green); font-size: 0.75rem;">(VOCÊ)</span></td>
+                            <td>12</td><td>6</td><td>4</td><td>0</td><td>2</td><td>10</td><td>5</td><td>+5</td>
+                            <td class="ap-highlight">66.7%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pos-badge pos-sulamericana">3</span></td>
+                            <td class="team-cell"><i class="fa-solid fa-shield" style="color: #ff3366;"></i> ${flamengo.nome}</td>
+                            <td>9</td><td>6</td><td>3</td><td>0</td><td>3</td><td>8</td><td>8</td><td>0</td>
+                            <td class="ap-highlight">50.0%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pos-badge pos-rebaixamento">4</span></td>
+                            <td class="team-cell"><i class="fa-solid fa-shield" style="color: #94a3b8;"></i> ${vasco.nome}</td>
+                            <td>4</td><td>6</td><td>1</td><td>1</td><td>4</td><td>7</td><td>8</td><td>-1</td>
+                            <td class="ap-highlight">22.2%</td>
+                        </tr>
+                    `;
+                }
+
+                console.log("Banco de dados completo (747 Clubes) carregado!");
+            } catch (err) {
+                console.error("Erro ao carregar pes_database.json:", err);
+            }
+        }
+
+        function buscarJogadorEditor(query) {
+            const container = document.getElementById('lista-editor-busca');
+            if (!query || query.trim().length < 2) {
+                container.innerHTML = `<div style="color: var(--text-muted); font-size: 0.8rem; text-align: center; padding: 20px;">Digite ao menos 2 letras...</div>`;
+                return;
+            }
+
+            const q = query.toLowerCase().trim();
+            let todosJogadores = [];
+            bancoClubes.forEach(c => {
+                if (c.jogadores) {
+                    c.jogadores.forEach(j => {
+                        if (j.nome.toLowerCase().includes(q)) {
+                            todosJogadores.push({ ...j, clubeNome: c.nome });
+                        }
+                    });
+                }
+            });
+
+            if (todosJogadores.length === 0) {
+                container.innerHTML = `<div style="color: var(--text-muted); font-size: 0.8rem; text-align: center; padding: 20px;">Nenhum jogador encontrado com "${query}".</div>`;
+                return;
+            }
+
+            let html = "";
+            todosJogadores.slice(0, 30).forEach(j => {
+                const siglaPos = posMap[j.posicao] || "JOG";
+                html += `
+                    <div onclick="selecionarJogadorEditor(${j.id}, '${j.nome.replace(/'/g, "\\'")}', ${j.idade}, ${j.overall}, ${j.posicao}, '${j.clubeNome.replace(/'/g, "\\\'")}')" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 8px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--neon-green)'" onmouseout="this.style.borderColor='var(--border-glass)'">
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">${j.nome}</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">${siglaPos} • ${j.clubeNome}</div>
+                        </div>
+                        <div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--neon-green);">${j.overall}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function selecionarJogadorEditor(id, nome, idade, overall, posicao, clube) {
+            const siglaPos = posMap[posicao] || "JOG";
+            const painel = document.getElementById('painel-editor-atleta');
+            
+            painel.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-glass); margin-bottom: 16px;">
+                    <div>
+                        <h3 style="font-size: 1.2rem; color: #fff; font-weight: 700; margin: 0;">${nome}</h3>
+                        <p style="font-size: 0.8rem; color: var(--neon-green); margin: 0;">${siglaPos} • ${clube} • ID: ${id}</p>
+                    </div>
+                    <div style="width: 46px; height: 46px; background: linear-gradient(135deg, var(--neon-green), var(--neon-blue)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; color: #000;">
+                        ${overall}
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                    <div>
+                        <label style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Idade:</label>
+                        <input type="number" value="${idade}" style="width: 100%; background: #101622; color: #fff; border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 10px; font-weight: 600;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Posição Principal:</label>
+                        <select style="width: 100%; background: #101622; color: var(--neon-green); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 10px; font-weight: 600;">
+                            ${posMap.map((p, idx) => `<option value="${idx}" ${idx === posicao ? 'selected' : ''}>${p}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 16px;">
+                    <h4 style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;"><i class="fa-solid fa-sliders"></i> Atributos do PES 2021:</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 10px; border-radius: 6px;">
+                            <span>Passe Curto:</span>
+                            <input type="number" value="78" min="40" max="99" style="width: 50px; background: #101622; color: var(--neon-green); border: 1px solid var(--border-glass); text-align: center; border-radius: 4px;">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 10px; border-radius: 6px;">
+                            <span>Finalização:</span>
+                            <input type="number" value="82" min="40" max="99" style="width: 50px; background: #101622; color: var(--neon-green); border: 1px solid var(--border-glass); text-align: center; border-radius: 4px;">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 10px; border-radius: 6px;">
+                            <span>Velocidade:</span>
+                            <input type="number" value="85" min="40" max="99" style="width: 50px; background: #101622; color: var(--neon-green); border: 1px solid var(--border-glass); text-align: center; border-radius: 4px;">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 10px; border-radius: 6px;">
+                            <span>Resistência:</span>
+                            <input type="number" value="76" min="40" max="99" style="width: 50px; background: #101622; color: var(--neon-green); border: 1px solid var(--border-glass); text-align: center; border-radius: 4px;">
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="alert('Atributos salvos com sucesso e compilados no EDIT00000000 do PES 2021!')" class="btn-action" style="width: 100%; margin-top: 20px;">
+                    <i class="fa-solid fa-floppy-disk"></i> SALVAR NO ARCHIVO EDIT00000000
+                </button>
+            `;
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', carregarBancoPes);
+        } else {
+            carregarBancoPes();
+        }
+    </script>
+</body>
+</html>

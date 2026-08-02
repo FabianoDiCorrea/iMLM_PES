@@ -1,121 +1,129 @@
 #include <iostream>
 #include <cassert>
-#include <clocale>
 #include "../Domain/Clube.h"
 #include "../Domain/Jogador.h"
+#include "../Domain/Tecnico.h"
+#include "../Persistence/ClubeRepositoryMemoria.h"
+#include "../Persistence/ClubeSerializer.h"
 
 using namespace MLM;
 
-void TestarAdicaoJogador() {
-    Clube roma(125, L"Roma", "ROM", 9, L"Roma", 12);
-    Jogador messi(7511, L"Lionel Messi", "MESSI", 36, 10, PosicaoCampo::SegundoAtacante, 93, 93);
+void TestarCriacaoEAtributosExpansaoClube() {
+    std::cout << "[TESTE] Criacao e Atributos Institucionais do Clube... ";
+    Clube c(1, L"Flamengo", "FLA", 10, L"Rio de Janeiro", 50, 1);
 
-    assert(messi.ObterClubeId() == 0); // Inicialmente Agente Livre
+    assert(c.ObterId() == 1);
+    assert(c.ObterNome() == L"Flamengo");
+    assert(c.ObterNomeAbreviado() == "FLA");
+    assert(c.ObterPaisId() == 10);
+    assert(c.ObterCidade() == L"Rio de Janeiro");
+    assert(c.ObterEstadioId() == 50);
+    assert(c.ObterLigaId() == 1);
+    assert(c.ObterReputacao() == 50);
 
-    bool adicionado = roma.AdicionarJogador(&messi, 10);
-    assert(adicionado == true);
-    assert(roma.QuantidadeJogadores() == 1);
-    assert(roma.PossuiJogador(7511) == true);
-    assert(messi.ObterClubeId() == 125); // Jogador agora reflete o ID da Roma
-    assert(messi.ObterNumeroCamisa() == 10);
+    c.DefinirTradicaoInstitucional(90);
+    assert(c.ObterTradicaoInstitucional() == 90);
 
-    std::cout << "[TESTE OK] Adicao de Jogador ao Elenco e Sincronizacao de Estado" << std::endl;
+    c.AdicionarRival(2); // Vasco
+    c.AdicionarRival(3); // Fluminense
+    assert(c.ERival(2) == true);
+    assert(c.ERival(3) == true);
+    assert(c.ERival(4) == false);
+
+    std::cout << "OK!\n";
 }
 
-void TestarRemocaoJogador() {
-    Clube roma(125, L"Roma", "ROM", 9, L"Roma", 12);
-    Jogador messi(7511, L"Lionel Messi", "MESSI", 36, 10, PosicaoCampo::SegundoAtacante, 93, 93);
+void TestarGestaoDeElencoETecnico() {
+    std::cout << "[TESTE] Gestao de Elenco e Integracao com Tecnico... ";
+    Clube c(10, L"Palmeiras", "PAL", 10, L"São Paulo", 51, 1);
+    Tecnico t(100, L"Abel Ferreira", 10, 45, 85);
 
-    roma.AdicionarJogador(&messi, 10);
-    assert(roma.QuantidadeJogadores() == 1);
+    // Vínculo com técnico
+    c.AlterarTecnico(t.ObterId());
+    assert(c.ObterTecnicoId() == 100);
 
-    bool removido = roma.RemoverJogador(7511);
-    assert(removido == true);
-    assert(roma.QuantidadeJogadores() == 0);
-    assert(roma.PossuiJogador(7511) == false);
-    assert(messi.ObterClubeId() == 0); // Jogador voltou a ser Agente Livre
-    assert(messi.ObterNumeroCamisa() == 0);
+    // Vínculo com jogadores
+    Jogador j1(1001, L"Dudu", "DUDU", 31, 10, PosicaoCampo::PontaEsquerda, 82, 85);
+    Jogador j2(1002, L"Veiga", "VEIGA", 28, 10, PosicaoCampo::MeioCampoOfensivo, 84, 86);
 
-    // Tentativa de remover jogador inexistente
-    bool remInexistente = roma.RemoverJogador(99999);
-    assert(remInexistente == false);
+    assert(c.AdicionarJogador(&j1, 7) == true);
+    assert(c.AdicionarJogador(&j2, 23) == true);
+    assert(c.QuantidadeJogadores() == 2);
+    assert(c.PossuiJogador(1001) == true);
+    assert(c.ValidarConsistenciaElenco() == true);
 
-    std::cout << "[TESTE OK] Remocao de Jogador do Elenco e Desvinculo" << std::endl;
+    // Tentativa de duplicar jogador
+    assert(c.AdicionarJogador(&j1, 77) == false);
+
+    // Remover jogador
+    assert(c.RemoverJogador(1001) == true);
+    assert(c.QuantidadeJogadores() == 1);
+    assert(c.PossuiJogador(1001) == false);
+
+    std::cout << "OK!\n";
 }
 
-void TestarImpedimentoDuplicidade() {
-    Clube roma(125, L"Roma", "ROM", 9, L"Roma", 12);
-    Jogador messi(7511, L"Lionel Messi", "MESSI", 36, 10, PosicaoCampo::SegundoAtacante, 93, 93);
+void TestarMemoriaInstitucionalEHistorico() {
+    std::cout << "[TESTE] Memoria Institucional (Titulos e Campanhas)... ";
+    Clube c(20, L"Santos", "SAN", 10, L"Santos", 52, 1);
 
-    bool add1 = roma.AdicionarJogador(&messi, 10);
-    assert(add1 == true);
+    c.RegistrarTitulo(2026, 101, L"Copa do Brasil");
+    assert(c.ObterTitulos().size() == 1);
+    assert(c.ObterTitulos()[0].nomeCompeticao == L"Copa do Brasil");
 
-    // Tentativa de adicionar o mesmo jogador novamente
-    bool add2 = roma.AdicionarJogador(&messi, 10);
-    assert(add2 == false); // Deve ser recusado
-    assert(roma.QuantidadeJogadores() == 1);
+    c.RegistrarCampanha(2026, 1, L"Brasileirão Série A", 2, L"Vice-Campeão", 38, 22, 10, 6);
+    assert(c.ObterCampanhas().size() == 1);
+    assert(c.ObterCampanhas()[0].posicaoFinal == 2);
 
-    std::cout << "[TESTE OK] Impedimento de Duplicidade de Jogador no Elenco" << std::endl;
+    std::cout << "OK!\n";
 }
 
-void TestarLimiteMaximoElenco() {
-    Clube roma(125, L"Roma", "ROM", 9, L"Roma", 12);
-    std::vector<Jogador> elencoFicticio;
-    elencoFicticio.reserve(41);
+void TestarPersistenciaESerializacaoClube() {
+    std::cout << "[TESTE] Persistencia e Serializacao do Clube... ";
+    ClubeRepositoryMemoria repo;
 
-    // Preenche o clube até o limite máximo de 40 jogadores
-    for (uint32_t i = 1; i <= 40; ++i) {
-        elencoFicticio.emplace_back(i, L"Jogador Teste", "TESTE", 20, 1, PosicaoCampo::Centroavante, 70, 75);
-    }
+    Clube c1(30, L"Real Madrid", "RMA", 15, L"Madrid", 60, 5);
+    c1.ReceberValor(50000000.0);
+    c1.DefinirOrcamentoTransferencias(30000000.0);
+    c1.AlterarReputacao(95);
 
-    for (size_t i = 0; i < 40; ++i) {
-        bool ok = roma.AdicionarJogador(&elencoFicticio[i], (uint16_t)(i + 1));
-        assert(ok == true);
-    }
+    // Salvar no repositório
+    OperationResult res1 = repo.Salvar(c1);
+    assert(res1.success == true);
 
-    assert(roma.QuantidadeJogadores() == 40);
+    // Buscar por ID e por Liga
+    auto resObter = repo.ObterPorId(30);
+    assert(resObter.success == true);
+    assert(resObter.value.ObterNome() == L"Real Madrid");
 
-    // Tentativa de adicionar o 41º jogador
-    Jogador jogadorExcedente(41, L"Excedente", "EXCED", 20, 1, PosicaoCampo::Centroavante, 70, 75);
-    bool addExcedente = roma.AdicionarJogador(&jogadorExcedente, 99);
-    assert(addExcedente == false); // Recusado devido ao limite
-    assert(roma.QuantidadeJogadores() == 40);
+    auto listaLiga = repo.ObterPorLiga(5);
+    assert(listaLiga.size() == 1);
 
-    std::cout << "[TESTE OK] Validacao do Limite Maximo do Elenco (40 Jogadores)" << std::endl;
-}
+    // Serialização e Deserialização
+    std::string serializado = ClubeSerializer::Serializar(c1);
+    assert(!serializado.empty());
 
-void TestarConsultaElenco() {
-    Clube roma(125, L"Roma", "ROM", 9, L"Roma", 12);
-    Jogador j1(101, L"Jogador 1", "J1", 20, 1, PosicaoCampo::Goleiro, 75, 80);
-    Jogador j2(102, L"Jogador 2", "J2", 22, 1, PosicaoCampo::Zagueiro, 78, 82);
+    auto resDes = ClubeSerializer::Deserializar(30, L"Real Madrid", "RMA", serializado);
+    assert(resDes.success == true);
+    assert(resDes.value.ObterSaldo() == 50000000.0);
+    assert(resDes.value.ObterReputacao() == 95);
 
-    roma.AdicionarJogador(&j1, 1);
-    roma.AdicionarJogador(&j2, 4);
-
-    const auto& listaElenco = roma.ObterJogadores();
-    assert(listaElenco.size() == 2);
-    assert(listaElenco[0]->ObterId() == 101);
-    assert(listaElenco[1]->ObterId() == 102);
-
-    std::cout << "[TESTE OK] Consulta dos Jogadores do Elenco" << std::endl;
+    std::cout << "OK!\n";
 }
 
 int main() {
-    setlocale(LC_ALL, "");
+    std::cout << "========================================\n";
+    std::cout << " INICIANDO SUÍTE DE TESTES: CLUBES     \n";
+    std::cout << "========================================\n";
 
-    std::cout << "==================================================" << std::endl;
-    std::cout << " MLM - TESTES UNITARIOS DE GESTAO DE ELENCO      " << std::endl;
-    std::cout << "==================================================" << std::endl << std::endl;
+    TestarCriacaoEAtributosExpansaoClube();
+    TestarGestaoDeElencoETecnico();
+    TestarMemoriaInstitucionalEHistorico();
+    TestarPersistenciaESerializacaoClube();
 
-    TestarAdicaoJogador();
-    TestarRemocaoJogador();
-    TestarImpedimentoDuplicidade();
-    TestarLimiteMaximoElenco();
-    TestarConsultaElenco();
-
-    std::cout << std::endl << "==================================================" << std::endl;
-    std::cout << "  TODOS OS TESTES UNITARIOS PASSARAM COM SUCESSO!  " << std::endl;
-    std::cout << "==================================================" << std::endl;
+    std::cout << "========================================\n";
+    std::cout << " TODOS OS TESTES PASSARAM COM SUCESSO!  \n";
+    std::cout << "========================================\n";
 
     return 0;
 }

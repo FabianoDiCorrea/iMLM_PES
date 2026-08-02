@@ -114,8 +114,9 @@ Todos os clubes, treinadores e seleções tomam decisões de forma autônoma. O 
 
 ---
 
-## 10. PILARES DO PROJETO
+## 10. PILARES DO PROJETO E NOVOS PRINCÍPIOS
 
+### Pilares Fundamentais
 1. O protagonista é o treinador.
 2. O universo pertence ao iMLM.
 3. O PES existe apenas para disputar partidas.
@@ -126,6 +127,11 @@ Todos os clubes, treinadores e seleções tomam decisões de forma autônoma. O 
 8. Toda funcionalidade deve fortalecer a carreira do treinador.
 9. Toda funcionalidade deve respeitar a separação entre gerenciamento e partidas.
 10. Em caso de dúvida arquitetural, a solução deverá favorecer um universo persistente, coerente e vivo.
+
+### Princípios da Evolução da Filosofia
+11. **Princípio da Coerência com o PES:** O iMLM existe para expandir a Master League do PES, nunca para substituí-la. Toda funcionalidade deverá respeitar a experiência apresentada pelo PES. O gerenciamento deve complementar o jogo, nunca criar discrepâncias perceptíveis entre o universo administrativo e as partidas. O objetivo é criar uma Master League mais profunda, inteligente e realista, preservando a simplicidade e a diversão do PES.
+12. **Princípio das Expectativas Dinâmicas:** As expectativas dos clubes nunca serão fixas. Elas deverão evoluir naturalmente conforme a história construída dentro do universo. A IA deverá considerar simultaneamente: tradição do clube, momento esportivo e evolução institucional. Clubes em crescimento passam a possuir expectativas maiores, enquanto clubes em declínio podem ter expectativas reduzidas temporariamente.
+13. **Princípio da Memória Institucional:** O universo possui memória. Uma única temporada nunca altera completamente o patamar de um clube. A IA deverá equilibrar: história de longo prazo, desempenho das últimas temporadas e a situação atual.
 
 ---
 

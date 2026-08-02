@@ -116,30 +116,58 @@ bool PlayerManager::UpdatePlayerSkills(uint32_t player_id, const Player &skills)
     p->stamina = skills.stamina;
     p->kick_pwr = skills.kick_pwr;
 
-    // Recalcula o Overall com base nas novas habilidades
-    int rating = p->drib;
-    rating = (std::max)((int)p->gk, rating);
-    rating = (std::max)((int)p->finish, rating);
-    rating = (std::max)((int)p->lowpass, rating);
-    rating = (std::max)((int)p->loftpass, rating);
-    rating = (std::max)((int)p->header, rating);
-    rating = (std::max)((int)p->swerve, rating);
-    rating = (std::max)((int)p->catching, rating);
-    rating = (std::max)((int)p->clearing, rating);
-    rating = (std::max)((int)p->reflex, rating);
-    rating = (std::max)((int)p->cover, rating);
-    rating = (std::max)((int)p->body_ctrl, rating);
-    rating = (std::max)((int)p->phys_cont, rating);
-    rating = (std::max)((int)p->kick_pwr, rating);
-    rating = (std::max)((int)p->exp_pwr, rating);
-    rating = (std::max)((int)p->ball_ctrl, rating);
-    rating = (std::max)((int)p->ball_win, rating);
-    rating = (std::max)((int)p->jump, rating);
-    rating = (std::max)((int)p->place_kick, rating);
-    rating = (std::max)((int)p->stamina, rating);
-    rating = (std::max)((int)p->speed, rating);
-    rating = (std::max)((int)p->aggres, rating);
-    p->overall = rating;
+    // Recalcula o Overall com base nas tabelas de peso oficiais por Posição do PES
+    double score = 0.0;
+    switch (p->reg_pos) {
+    case Position::GK:
+        score = (p->gk * 0.22) + (p->catching * 0.22) + (p->clearing * 0.20) + 
+                (p->reflex * 0.22) + (p->cover * 0.14);
+        break;
+    case Position::CB:
+        score = (p->def * 0.28) + (p->ball_win * 0.25) + (p->phys_cont * 0.18) + 
+                (p->header * 0.15) + (p->jump * 0.14);
+        break;
+    case Position::LB:
+    case Position::RB:
+        score = (p->speed * 0.20) + (p->stamina * 0.18) + (p->def * 0.18) + 
+                (p->loftpass * 0.16) + (p->ball_win * 0.14) + (p->exp_pwr * 0.14);
+        break;
+    case Position::DMF:
+        score = (p->ball_win * 0.22) + (p->def * 0.20) + (p->lowpass * 0.20) + 
+                (p->stamina * 0.15) + (p->phys_cont * 0.13) + (p->loftpass * 0.10);
+        break;
+    case Position::CMF:
+        score = (p->lowpass * 0.22) + (p->ball_ctrl * 0.20) + (p->stamina * 0.18) + 
+                (p->loftpass * 0.15) + (p->drib * 0.13) + (p->def * 0.12);
+        break;
+    case Position::LMF:
+    case Position::RMF:
+        score = (p->speed * 0.20) + (p->drib * 0.20) + (p->ball_ctrl * 0.18) + 
+                (p->lowpass * 0.16) + (p->loftpass * 0.14) + (p->stamina * 0.12);
+        break;
+    case Position::AMF:
+        score = (p->lowpass * 0.22) + (p->ball_ctrl * 0.22) + (p->drib * 0.20) + 
+                (p->atk * 0.14) + (p->finish * 0.12) + (p->loftpass * 0.10);
+        break;
+    case Position::LWF:
+    case Position::RWF:
+        score = (p->speed * 0.22) + (p->drib * 0.22) + (p->exp_pwr * 0.18) + 
+                (p->ball_ctrl * 0.15) + (p->finish * 0.13) + (p->atk * 0.10);
+        break;
+    case Position::SS:
+        score = (p->ball_ctrl * 0.20) + (p->drib * 0.20) + (p->atk * 0.20) + 
+                (p->finish * 0.18) + (p->lowpass * 0.12) + (p->speed * 0.10);
+        break;
+    case Position::CF:
+        score = (p->finish * 0.25) + (p->atk * 0.25) + (p->header * 0.15) + 
+                (p->phys_cont * 0.15) + (p->kick_pwr * 0.10) + (p->jump * 0.10);
+        break;
+    default:
+        score = (p->atk + p->def + p->drib + p->speed + p->stamina) / 5.0;
+        break;
+    }
+    p->overall = (int)(score + 0.5); // Arredondamento preciso
+
 
     return SavePlayer(player_id);
 }
