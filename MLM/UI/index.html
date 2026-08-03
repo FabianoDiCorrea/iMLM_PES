@@ -724,6 +724,23 @@
 
     <script>
         const posMap = ["GOL", "ZC", "LE", "LD", "VOL", "MLG", "MLE", "MLD", "MAT", "PTE", "PTD", "SA", "CA"];
+        const posFullMap = ["Goleiro", "Zagueiro", "Lateral Esquerdo", "Lateral Direito", "Volante", "Meia Central", "Meia Esq.", "Meia Dir.", "Meia Atacante", "Ponta Esq.", "Ponta Dir.", "Segundo Atacante", "Centroavante"];
+        const playStyleMap = [
+            "-", "Goleiro Ofensivo", "Goleiro Defensivo", "Construtor", "Extra Atacante", "Lateral Ofensivo", "Jog. de Lado de Campo",
+            "Defensivo", "Armador", "Box-to-Box", "Oportunista", "Criativo", "Clássico Nº10", "Meia Incisivo", "Ala Prolífico",
+            "Especialista em Cruzamento", "Ponta Prolífico", "Segundo Atacante", "Caçador de Gols", "Pivô", "Homem de Área",
+            "Raposa da Área"
+        ];
+        const playerSkillMap = [
+            "Pedalada simples", "Toque duplo", "Elástico", "360 graus", "Chapéu", "Finta de letra", "Controle de domínio",
+            "Corte por trás e giro", "Controle com sola", "Cabeceio", "Chute de longe", "Chute por cobertura", "Finalização de longe",
+            "Chute folha seca", "Chute descendente", "Chute ascendente", "Finalização acrobática", "Calcanhar", "Finalização de primeira",
+            "Passe de primeira", "Passe enfiado", "Passe na medida", "Cruzamento preciso", "Chute com curva externa", "Rabona",
+            "Passe sem olhar", "Passe alto baixo", "Tiro baixo de GO", "Tiro alto de GO", "Arremesso longo", "Arremesso longo de GO",
+            "Especialista em pênalti", "Defesa de pênalti GO", "Malícia", "Marcação", "Volta para defender", "Interceptação",
+            "Corte acrobático", "Capitão", "Super substituto", "Espírito de luta"
+        ];
+        const comStyleMap = ["Malandro", "Drible veloz", "Rápido como uma bala", "Corrida com gás", "Expert em bola longa", "Cruzamento antecipado", "Chutador de longe"];
         const posOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         let bancoClubes = [];
 
@@ -790,7 +807,7 @@
             const s = j.stats || {};
 
             const renderStatRow = (label, val) => {
-                const v = val || 40;
+                const v = (val === undefined || val === null) ? 40 : val;
                 const col = getStatColor(v);
                 return `
                     <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 7px 12px; border-radius: 8px; font-size: 0.82rem;">
@@ -801,10 +818,74 @@
             };
 
             const overallColor = getStatColor(j.overall);
+            const peDominante = j.peDominante === 1 ? "Esquerdo" : "Direito";
+            const estiloJogo = playStyleMap[j.estiloJogo] || "-";
+            const posicoesJogaveis = (j.posicoesJogaveis || []).map((nivel, idx) => ({ nivel, idx })).filter(p => p.nivel > 0);
+            const habilidadesAtivas = (j.habilidadesJogador || []).map((ativo, idx) => ativo ? playerSkillMap[idx] : null).filter(Boolean);
+            const estilosComAtivos = (j.estilosCOM || []).map((ativo, idx) => ativo ? comStyleMap[idx] : null).filter(Boolean);
+            const renderTag = (text, color = 'var(--neon-green)') => `
+                <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 999px; background: ${color}18; border: 1px solid ${color}55; color: ${color}; font-size: 0.76rem; font-weight: 800;">${text}</span>
+            `;
+            const renderPositionPanel = () => {
+                const itens = posicoesJogaveis.length ? posicoesJogaveis : [{ idx: j.posicao, nivel: 2 }];
+                return itens.map(p => renderTag(`${posMap[p.idx] || 'JOG'} ${p.nivel === 2 ? 'A' : 'B'}`, p.nivel === 2 ? 'var(--neon-green)' : 'var(--neon-blue)')).join('');
+            };
+            const renderNameList = (items, emptyText) => {
+                if (!items.length) return `<span style="color: var(--text-muted); font-size: 0.85rem;">${emptyText}</span>`;
+                return items.map(item => `
+                    <div style="padding: 7px 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); color: #e5edf7; font-size: 0.82rem; font-weight: 650;">${item}</div>
+                `).join('');
+            };
+            const playableLevel = (...indices) => {
+                if (!indices.length) return 0;
+                const levels = j.posicoesJogaveis || [];
+                return Math.max(...indices.map(idx => Math.max(levels[idx] || 0, idx === j.posicao ? 2 : 0)));
+            };
+            const renderPitchZone = (label, indices) => {
+                const level = playableLevel(...indices);
+                const bg = level === 2 ? 'rgba(0,255,136,0.92)' : level === 1 ? 'rgba(0,184,255,0.82)' : 'rgba(255,255,255,0.035)';
+                const border = level === 2 ? 'rgba(160,255,0,0.95)' : level === 1 ? 'rgba(0,255,255,0.75)' : 'rgba(255,255,255,0.08)';
+                const color = level ? '#04130b' : 'rgba(255,255,255,0.22)';
+                return `<div title="${label}" style="background: ${bg}; border: 1px solid ${border}; color: ${color}; min-height: 36px; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 900;">${level ? label : ''}</div>`;
+            };
+            const renderMiniPitch = () => `
+                <div style="width: 190px; max-width: 100%; margin: 12px auto 10px auto; padding: 10px; border: 1px solid rgba(255,255,255,0.16); background: linear-gradient(180deg, rgba(12,18,20,0.92), rgba(8,10,12,0.92)); border-radius: 10px; position: relative;">
+                    <div style="position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; transform: translate(-50%, -50%); border: 1px solid rgba(255,255,255,0.22); border-radius: 50%; pointer-events: none;"></div>
+                    <div style="position: absolute; left: 20%; right: 20%; top: 10px; height: 18px; border: 1px solid rgba(255,255,255,0.18); border-top: none; pointer-events: none;"></div>
+                    <div style="position: absolute; left: 20%; right: 20%; bottom: 10px; height: 18px; border: 1px solid rgba(255,255,255,0.18); border-bottom: none; pointer-events: none;"></div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(5, 36px); gap: 2px;">
+                        ${renderPitchZone('PTE', [9])}
+                        ${renderPitchZone('CA', [12, 11])}
+                        ${renderPitchZone('PTD', [10])}
+                        ${renderPitchZone('MLE', [6])}
+                        ${renderPitchZone('MAT', [8, 11])}
+                        ${renderPitchZone('MLD', [7])}
+                        ${renderPitchZone('LE', [2])}
+                        ${renderPitchZone('VOL', [4, 5])}
+                        ${renderPitchZone('LD', [3])}
+                        ${renderPitchZone('', [])}
+                        ${renderPitchZone('ZC', [1])}
+                        ${renderPitchZone('', [])}
+                        ${renderPitchZone('', [])}
+                        ${renderPitchZone('GOL', [0])}
+                        ${renderPitchZone('', [])}
+                    </div>
+                </div>
+            `;
+            const renderStars = (value, max = 2) => {
+                const safeValue = Math.max(0, Math.min(max, Number(value || 0)));
+                return Array.from({ length: max }, (_, idx) => `<span style="color: ${idx < safeValue ? '#ffe600' : 'rgba(255,255,255,0.18)'}; font-size: 1rem; text-shadow: ${idx < safeValue ? '0 0 8px rgba(255,230,0,0.45)' : 'none'};">★</span>`).join('');
+            };
+            const renderStarRow = (label, value) => `
+                <div style="display: grid; grid-template-columns: 86px 1fr; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid rgba(255,255,255,0.07);">
+                    <div style="letter-spacing: 2px;">${renderStars(value)}</div>
+                    <div style="color: #e5edf7; font-size: 0.84rem; font-weight: 750;">${label}</div>
+                </div>
+            `;
 
             const modalHtml = `
                 <div id="modal-jogador" onclick="if(event.target === this) this.remove()" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.88); backdrop-filter: blur(12px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;">
-                    <div style="background: #0d1117; border: 1px solid rgba(0,255,136,0.3); border-radius: 24px; padding: 28px; width: 720px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(0,0,0,0.8); font-family: 'Inter', sans-serif;">
+                    <div style="background: #0d1117; border: 1px solid rgba(0,255,136,0.3); border-radius: 24px; padding: 28px; width: 860px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(0,0,0,0.8); font-family: 'Inter', sans-serif;">
                         
                         <!-- Header -->
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
@@ -834,11 +915,12 @@
                                 <h4 style="color: var(--neon-blue); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 4px 0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                                     <i class="fa-solid fa-futbol"></i> Ataque & Técnica
                                 </h4>
-                                ${renderStatRow("Talento Ofensivo", s.atk)}
-                                ${renderStatRow("Controle de Bola", s.ball_ctrl)}
-                                ${renderStatRow("Drible", s.drib)}
-                                ${renderStatRow("Passe Rasteiro", s.lowpass)}
-                                ${renderStatRow("Passe Alto", s.loftpass)}
+                                 ${renderStatRow("Talento Ofensivo", s.atk)}
+                                 ${renderStatRow("Controle de Bola", s.ball_ctrl)}
+                                 ${renderStatRow("Drible", s.drib)}
+                                ${renderStatRow("Condução Firme", s.tight_pos)}
+                                 ${renderStatRow("Passe Rasteiro", s.lowpass)}
+                                 ${renderStatRow("Passe Alto", s.loftpass)}
                                 ${renderStatRow("Finalização", s.finish)}
                                 ${renderStatRow("Cabeceio", s.header)}
                                 ${renderStatRow("Cobrança de Falta", s.place_kick)}
@@ -860,17 +942,70 @@
                                 ${renderStatRow("Talento Defensivo", s.def)}
                                 ${renderStatRow("Desarme", s.ball_win)}
                                 ${renderStatRow("Agressividade", s.aggres)}
-                                
-                                ${siglaPos === "GOL" || (s.gk && s.gk > 45) ? `
-                                    <h4 style="color: var(--neon-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 4px 0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                                        <i class="fa-solid fa-hands"></i> Goleiro
-                                    </h4>
-                                    ${renderStatRow("Talento Goleiro", s.gk)}
-                                    ${renderStatRow("Firmeza / Defesa", s.catching)}
-                                    ${renderStatRow("Afastamento", s.clearing)}
-                                    ${renderStatRow("Reflexos", s.reflex)}
-                                    ${renderStatRow("Cobertura", s.cover)}
-                                ` : ''}
+                                <h4 style="color: var(--neon-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 4px 0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-hands"></i> Goleiro
+                                </h4>
+                                ${renderStatRow("Talento Goleiro", s.gk)}
+                                ${renderStatRow("Firmeza de GO", s.catching)}
+                                ${renderStatRow("Afastamento de GO", s.clearing)}
+                                ${renderStatRow("Reflexos de GO", s.reflex)}
+                                ${renderStatRow("Alcance de GO", s.cover)}
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
+                            ${renderStatRow("Pior Pé (freq.)", j.piorPeUso ?? s.weak_use)}
+                            ${renderStatRow("Pior Pé (prec.)", j.piorPePrecisao ?? s.weak_acc)}
+                            ${renderStatRow("Forma Física", j.formaFisica ?? s.form)}
+                            ${renderStatRow("Resistência à Lesão", j.resistenciaLesao ?? s.injury)}
+                        </div>
+
+                        <div style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 14px;">
+                                <h4 style="color: var(--neon-blue); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; font-weight: 800; display: flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-id-card"></i> Dados PES
+                                </h4>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                    ${renderStatRow("Idade", j.idade)}
+                                    ${renderStatRow("Altura (cm)", j.altura)}
+                                    ${renderStatRow("Peso (kg)", j.peso)}
+                                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 7px 12px; border-radius: 8px; font-size: 0.82rem;">
+                                        <span style="color: #b0b8c4; font-weight: 500;">Melhor Pé</span>
+                                        <span style="color: var(--neon-green); font-weight: 900;">${peDominante}</span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 12px;">
+                                    <div style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;">Posições jogáveis</div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 7px;">${renderPositionPanel()}</div>
+                                </div>
+                                ${renderMiniPitch()}
+                                <div style="margin-top: 12px;">
+                                    <div style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;">Estilo de jogo</div>
+                                    ${renderTag(estiloJogo, 'var(--neon-purple)')}
+                                </div>
+                                <div style="margin-top: 12px;">
+                                    <div style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;">InspiraÃ§Ã£o PES</div>
+                                    <div style="color: #fff; font-size: 1rem; font-weight: 900; margin-bottom: 2px;">${j.atitudeJogo <= 2 ? 'Inspirador' : 'Equilibrado'}</div>
+                                    ${renderStarRow("Carregando a bola", j.estrela)}
+                                    ${renderStarRow("Passe rasteiro", (j.habilidadesJogador || [])[21] ? 1 : 0)}
+                                    ${renderStarRow("Passe alto", (j.habilidadesJogador || [])[22] ? 1 : 0)}
+                                </div>
+                            </div>
+
+                            <div style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 14px;">
+                                <h4 style="color: var(--neon-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; font-weight: 800; display: flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Habil./Estilos de jogo
+                                </h4>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div>
+                                        <div style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;">Habilidades</div>
+                                        <div style="display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto;">${renderNameList(habilidadesAtivas, 'Sem habilidades especiais')}</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;">COM</div>
+                                        <div style="display: flex; flex-direction: column; gap: 6px;">${renderNameList(estilosComAtivos, 'Sem estilos COM')}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

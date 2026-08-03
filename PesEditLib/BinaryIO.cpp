@@ -1,6 +1,7 @@
-#include "BinaryIO.h"
+﻿#include "BinaryIO.h"
 #include <windows.h>
 #include <algorithm>
+#include <cmath>
 
 namespace BinaryIO {
 
@@ -64,6 +65,89 @@ void write_data(int input, int start_bit, int bits_to_write, int &current_byte, 
     }
 }
 
+static int ClampRating(double score)
+{
+    int rating = (int)std::round(score);
+    if (rating < 40) rating = 40;
+    if (rating > 99) rating = 99;
+    return rating;
+}
+
+static int CalculatePesDisplayOverallForPosition(const Player &player, Position position)
+{
+    double score = 0.0;
+    switch (position) {
+    case Position::GK:
+        score = (player.gk * 0.28) + (player.catching * 0.20) + (player.clearing * 0.16) +
+                (player.reflex * 0.22) + (player.cover * 0.14);
+        score -= (score >= 90.0) ? 5.60 : 5.00;
+        break;
+    case Position::CB:
+        score = (player.def * 0.30) + (player.ball_win * 0.24) + (player.phys_cont * 0.16) +
+                (player.header * 0.14) + (player.jump * 0.10) + (player.aggres * 0.06) +
+                ((player.body_ctrl - 80.0) * 0.18) - 0.70;
+        break;
+    case Position::LB:
+    case Position::RB:
+        score = (player.speed * 0.18) + (player.exp_pwr * 0.16) + (player.stamina * 0.18) +
+                (player.def * 0.16) + (player.ball_win * 0.14) + (player.loftpass * 0.12) +
+                (player.ball_ctrl * 0.06) - 1.0;
+        break;
+    case Position::DMF:
+        score = (player.def * 0.22) + (player.ball_win * 0.22) + (player.lowpass * 0.18) +
+                (player.stamina * 0.14) + (player.phys_cont * 0.12) + (player.aggres * 0.08) +
+                (player.loftpass * 0.04) - 1.0;
+        break;
+    case Position::CMF:
+        score = (player.lowpass * 0.22) + (player.ball_ctrl * 0.18) + (player.stamina * 0.18) +
+                (player.loftpass * 0.14) + (player.drib * 0.12) + (player.def * 0.10) +
+                (player.ball_win * 0.06) - 1.0;
+        break;
+    case Position::LMF:
+    case Position::RMF:
+        score = (player.speed * 0.18) + (player.drib * 0.18) + (player.ball_ctrl * 0.18) +
+                (player.lowpass * 0.14) + (player.loftpass * 0.14) + (player.stamina * 0.12) +
+                (player.exp_pwr * 0.06) - 3.0;
+        break;
+    case Position::AMF:
+        score = (player.lowpass * 0.20) + (player.ball_ctrl * 0.20) + (player.drib * 0.18) +
+                (player.finish * 0.14) + (player.atk * 0.14) + (player.loftpass * 0.08) +
+                (player.speed * 0.06) - 2.0;
+        break;
+    case Position::LWF:
+    case Position::RWF:
+        score = (player.atk * 0.18) + (player.ball_ctrl * 0.17) + (player.drib * 0.16) +
+                (player.speed * 0.14) + (player.exp_pwr * 0.12) + (player.finish * 0.10) +
+                (player.lowpass * 0.06) + (player.loftpass * 0.04) + (player.stamina * 0.03) - 5.0;
+        break;
+    case Position::SS:
+        score = (player.ball_ctrl * 0.18) + (player.drib * 0.18) + (player.atk * 0.18) +
+                (player.finish * 0.18) + (player.lowpass * 0.12) + (player.speed * 0.10) +
+                (player.exp_pwr * 0.06) - 3.0;
+        break;
+    case Position::CF:
+        score = (player.finish * 0.24) + (player.atk * 0.22) + (player.header * 0.14) +
+                (player.phys_cont * 0.14) + (player.speed * 0.10) + (player.kick_pwr * 0.08) +
+                (player.jump * 0.08) - 2.0;
+        break;
+    default:
+        score = (player.atk + player.def + player.drib + player.speed + player.stamina) / 5.0;
+        break;
+    }
+    return ClampRating(score);
+}
+
+static void FillPesDisplayOveralls(Player &player)
+{
+    for (int idx = 0; idx < 13; ++idx) {
+        player.overall_by_position[idx] = CalculatePesDisplayOverallForPosition(player, static_cast<Position>(idx));
+    }
+    int regPos = static_cast<int>(player.reg_pos);
+    player.overall = (regPos >= 0 && regPos < 13)
+        ? player.overall_by_position[regPos]
+        : CalculatePesDisplayOverallForPosition(player, player.reg_pos);
+}
+
 void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, int g_idx)
 {
     int player_start_byte = current_byte;
@@ -83,8 +167,8 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
 
     player.atk = (uint8_t)read_data(0, 7, current_byte, data);
     player.ball_ctrl = (uint8_t)read_data(7, 7, current_byte, data);
-    read_data(6, 2, current_byte, data);
-    read_data(0, 7, current_byte, data);
+    player.weak_use = (uint8_t)(read_data(6, 2, current_byte, data) + 1);
+    player.tight_pos = (uint8_t)read_data(0, 7, current_byte, data);
     player.lowpass = (uint8_t)read_data(7, 7, current_byte, data);
     player.loftpass = (uint8_t)read_data(6, 7, current_byte, data);
     player.finish = (uint8_t)read_data(5, 7, current_byte, data);
@@ -103,16 +187,16 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
     player.aggres = (uint8_t)read_data(7, 7, current_byte, data);
     player.gk = (uint8_t)read_data(6, 7, current_byte, data);
     player.catching = (uint8_t)read_data(5, 7, current_byte, data);
-    read_data(4, 3, current_byte, data);
+    player.form = (uint8_t)(read_data(4, 3, current_byte, data) + 1);
     read_data(7, 1, current_byte, data);
     player.cover = (uint8_t)read_data(0, 7, current_byte, data);
     player.age = (uint8_t)read_data(7, 6, current_byte, data);
     uint8_t pos_raw = (uint8_t)read_data(5, 4, current_byte, data);
     player.reg_pos = (pos_raw < 13) ? static_cast<Position>(pos_raw) : Position::Unknown;
 
-    read_data(2, 5, current_byte, data);
+    player.play_style = (uint8_t)read_data(2, 5, current_byte, data);
     read_data(7, 5, current_byte, data);
-    read_data(4, 3, current_byte, data);
+    player.star = (uint8_t)read_data(4, 3, current_byte, data);
     read_data(7, 1, current_byte, data);
     player.def = (uint8_t)read_data(0, 7, current_byte, data);
     player.clearing = (uint8_t)read_data(7, 7, current_byte, data);
@@ -120,33 +204,52 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
     read_data(5, 3, current_byte, data);
     read_data(0, 3, current_byte, data);
     read_data(3, 3, current_byte, data);
-    read_data(6, 2, current_byte, data);
+    player.weak_acc = (uint8_t)(read_data(6, 2, current_byte, data) + 1);
     player.drib = (uint8_t)read_data(0, 7, current_byte, data);
-    read_data(7, 2, current_byte, data);
-    read_data(1, 2, current_byte, data);
-    read_data(3, 2, current_byte, data);
+    player.injury = (uint8_t)(read_data(7, 2, current_byte, data) + 1);
+    player.play_attit = (uint8_t)(read_data(1, 2, current_byte, data) + 1);
+    player.dribble_motion = (uint8_t)read_data(3, 2, current_byte, data);
 
-    for (int k = 0; k < 13; ++k) read_data(0, 2, current_byte, data);
+    player.playable_pos[0] = (uint8_t)read_data(5, 2, current_byte, data);
+    player.playable_pos[1] = (uint8_t)read_data(7, 2, current_byte, data);
+    player.playable_pos[2] = (uint8_t)read_data(1, 2, current_byte, data);
+    player.playable_pos[3] = (uint8_t)read_data(3, 2, current_byte, data);
+    player.playable_pos[4] = (uint8_t)read_data(5, 2, current_byte, data);
+    player.playable_pos[5] = (uint8_t)read_data(7, 2, current_byte, data);
+    player.playable_pos[6] = (uint8_t)read_data(1, 2, current_byte, data);
+    player.playable_pos[7] = (uint8_t)read_data(3, 2, current_byte, data);
+    player.playable_pos[8] = (uint8_t)read_data(5, 2, current_byte, data);
+    read_data(7, 1, current_byte, data);
+    player.playable_pos[10] = (uint8_t)read_data(0, 2, current_byte, data);
+    player.playable_pos[11] = (uint8_t)read_data(2, 2, current_byte, data);
+    player.playable_pos[12] = (uint8_t)read_data(4, 2, current_byte, data);
 
-    // Lendo Reflexos (84) e Kick Power (74) nos offsets exatos do bloco do jogador
-    player.reflex = data[player_start_byte + 0x16];
-    player.kick_pwr = data[player_start_byte + 0x125];
+    player.reflex = (uint8_t)read_data(6, 7, current_byte, data);
+    player.kick_pwr = (uint8_t)read_data(5, 7, current_byte, data);
 
-    read_data(6, 7, current_byte, data);
-    read_data(5, 7, current_byte, data);
-
-    read_data(4, 2, current_byte, data);
+    player.playable_pos[9] = (uint8_t)read_data(4, 2, current_byte, data);
     read_data(6, 1, current_byte, data);
     read_data(7, 1, current_byte, data);
     read_data(0, 1, current_byte, data);
     read_data(1, 1, current_byte, data);
     read_data(2, 1, current_byte, data);
     read_data(3, 1, current_byte, data);
-    read_data(5, 1, current_byte, data);
-    read_data(6, 1, current_byte, data);
+    player.strong_foot = (uint8_t)read_data(5, 1, current_byte, data);
+    player.strong_hand = (uint8_t)read_data(6, 1, current_byte, data);
 
-    for (int k = 0; k < 7; ++k) read_data(0, 1, current_byte, data);
-    for (int k = 0; k < 41; ++k) read_data(0, 1, current_byte, data);
+    player.com_style[0] = (uint8_t)read_data(7, 1, current_byte, data);
+    player.com_style[1] = (uint8_t)read_data(0, 1, current_byte, data);
+    player.com_style[2] = (uint8_t)read_data(1, 1, current_byte, data);
+    player.com_style[3] = (uint8_t)read_data(2, 1, current_byte, data);
+    player.com_style[4] = (uint8_t)read_data(3, 1, current_byte, data);
+    player.com_style[5] = (uint8_t)read_data(4, 1, current_byte, data);
+    player.com_style[6] = (uint8_t)read_data(5, 1, current_byte, data);
+
+    player.play_skill[0] = (uint8_t)read_data(6, 1, current_byte, data);
+    player.play_skill[1] = (uint8_t)read_data(7, 1, current_byte, data);
+    for (int k = 2; k < 41; ++k) {
+        player.play_skill[k] = (uint8_t)read_data(k % 8, 1, current_byte, data);
+    }
 
     current_byte++; // Unknown D 7/1
 
@@ -176,26 +279,7 @@ void parse_player_entry(Player &player, int &current_byte, const uint8_t *data, 
         player.name = L"Jogador " + std::to_wstring(player.id);
     }
 
-    // Cálculo de Overall da Posição Registrada (Motor Oficial PES 2021)
-    // O PES calcula o Overall exibido na tela de Editar/Planteis multiplicando cada habilidade
-    // pelos pesos exatos da posição registrada do atleta (ex: Goleiro = 0.36*GK_Reach + 0.28*Reflexes + 0.20*Catching + 0.16*Clearing)
-    // O PES calcula o Overall exibido na tela de Editar/Planteis multiplicando os atributos 
-    // pelos coeficientes exatos da posição registrada do atleta (Posição Padrão/Nativa).
-    int pos_overall = 75;
-    if (player.reg_pos == Position::GK) {
-        // Para Goleiros (GK):
-        // Gabriel Brazão: (83*0.35) + (84*0.25) + (83*0.15) + (85*0.25) - 4 = 79
-        // Bento: (86*0.35) + (91*0.25) + (88*0.15) + (91*0.25) - 4 = 83
-        double gk_rating = (player.gk * 0.35) + (player.catching * 0.25) + (player.clearing * 0.15) + (player.cover * 0.25);
-        pos_overall = (int)(gk_rating - 4.0);
-    } else {
-        // Demais posições: usa o byte de overall nativo da posição (+0x0B)
-        pos_overall = data[player_start_byte + 0x0B];
-    }
-
-    if (pos_overall < 40) pos_overall = 40;
-    if (pos_overall > 99) pos_overall = 99;
-    player.overall = pos_overall;
+    FillPesDisplayOveralls(player);
 
     current_byte = player_start_byte + 312;
 }
@@ -208,7 +292,7 @@ void write_player_entry(const Player &player, int &current_byte, uint8_t *data)
     write_data(player.id, 0, 4*8, current_byte, data);
     current_byte += 0x4;
 
-    current_byte += 2; // pula 2 bytes não editados
+    current_byte += 2; // pula 2 bytes nÃ£o editados
     write_data(player.height, 0, 8, current_byte, data);
     write_data(player.weight, 0, 8, current_byte, data);
     current_byte += 2; // pula 2 bytes de flags corporais/aparencia
@@ -253,7 +337,7 @@ void write_player_entry(const Player &player, int &current_byte, uint8_t *data)
     write_data(player.reflex, 6, 7, current_byte, data);
     write_data(player.kick_pwr, 5, 7, current_byte, data);
 
-    current_byte = player_start_byte + 184; // avança até o offset do Nome (184 bytes a partir do início)
+    current_byte = player_start_byte + 184; // avanÃ§a atÃ© o offset do Nome (184 bytes a partir do inÃ­cio)
 
     // Escreve Nome (UTF-8, 61 bytes)
     char name_utf8[64] = {0};
@@ -320,15 +404,15 @@ void write_team_entry(const Team &team, int &current_byte, uint8_t *data)
 {
     int team_start_byte = current_byte;
 
-    // Offset relativo 0x68 é o offset exato da string UTF-8 do nome do clube no PES 2021
+    // Offset relativo 0x68 Ã© o offset exato da string UTF-8 do nome do clube no PES 2021
     int name_byte = team_start_byte + 0x68;
     
-    // Gravar Nome do Time em UTF-8 (máx 0x46 bytes)
+    // Gravar Nome do Time em UTF-8 (mÃ¡x 0x46 bytes)
     char name_utf8[0x46] = {0};
     WideCharToMultiByte(CP_UTF8, 0, team.name.c_str(), -1, name_utf8, 0x46 - 1, NULL, NULL);
     memcpy(&(data[name_byte]), name_utf8, 0x46);
 
-    // Offset relativo 0xAE é o offset exato da sigla em ASCII (4 bytes)
+    // Offset relativo 0xAE Ã© o offset exato da sigla em ASCII (4 bytes)
     int shortname_byte = team_start_byte + 0xAE;
     char short_ascii[5] = {0};
     strncpy_s(short_ascii, 5, team.short_name.c_str(), 4);
@@ -338,3 +422,6 @@ void write_team_entry(const Team &team, int &current_byte, uint8_t *data)
 }
 
 } // namespace BinaryIO
+
+
+
