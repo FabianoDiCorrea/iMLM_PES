@@ -1,0 +1,834 @@
+[
+  {
+    "playerId": 120134,
+    "clubId": 1254,
+    "nome": "Robinho Junior",
+    "posicaoPes": "PTD",
+    "overallPesJogo": 73,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 40352,
+    "clubId": 1254,
+    "nome": "Neymar",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 83,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 126746,
+    "clubId": 1254,
+    "nome": "Gabriel Brazao",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 79,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 129510,
+    "clubId": 45,
+    "nome": "Bento",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 83,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 114593,
+    "clubId": 45,
+    "nome": "Bremer",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 85,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 46815,
+    "clubId": 45,
+    "nome": "Ederson",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 86,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 43989,
+    "clubId": 45,
+    "nome": "Danilo",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 80,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 117505,
+    "clubId": 136,
+    "nome": "Carlos Cuesta",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 80,
+    "fonte": "print PES enviado pelo usuario"
+  },
+  {
+    "playerId": 45761,
+    "clubId": 1249,
+    "nome": "Germán Cano",
+    "posicaoPes": "CA",
+    "overallPesJogo": 79,
+    "fonte": "print PES Fluminense 2026-08-02"
+  },
+  {
+    "playerId": 1073877550,
+    "clubId": 1249,
+    "nome": "John Kennedy",
+    "posicaoPes": "CA",
+    "overallPesJogo": 78,
+    "fonte": "print PES Fluminense 2026-08-02"
+  },
+  {
+    "playerId": 60181,
+    "clubId": 1252,
+    "nome": "Gabriel Mercado",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 77,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 45756,
+    "clubId": 137,
+    "nome": "Gustavo Gómez",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 81,
+    "fonte": "print PES Palmeiras 2026-08-02"
+  },
+  {
+    "playerId": 105304,
+    "clubId": 1248,
+    "nome": "Agustín Rossi",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 82,
+    "fonte": "print PES Flamengo 2026-08-02"
+  },
+  {
+    "playerId": 121259,
+    "clubId": 1247,
+    "nome": "Hugo Souza",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 81,
+    "fonte": "print PES Corinthians 2026-08-02"
+  },
+  {
+    "playerId": 140306,
+    "clubId": 1246,
+    "nome": "Cristian Medina",
+    "posicaoPes": "MLG",
+    "overallPesJogo": 81,
+    "fonte": "print PES Botafogo 2026-08-02"
+  },
+  {
+    "playerId": 104527,
+    "clubId": 274,
+    "nome": "Gerson",
+    "posicaoPes": "MLG",
+    "overallPesJogo": 81,
+    "fonte": "print PES Cruzeiro 2026-08-02"
+  },
+  {
+    "playerId": 127062,
+    "clubId": 274,
+    "nome": "Kaio Jorge",
+    "posicaoPes": "CA",
+    "overallPesJogo": 81,
+    "fonte": "print PES Cruzeiro 2026-08-02"
+  },
+  {
+    "playerId": 55803,
+    "clubId": 274,
+    "nome": "Ruan Índio",
+    "posicaoPes": "CA",
+    "overallPesJogo": 70,
+    "fonte": "print PES Cruzeiro 2026-08-02"
+  },
+  {
+    "playerId": 127571,
+    "clubId": 109,
+    "nome": "Fran García",
+    "posicaoPes": "LE",
+    "overallPesJogo": 83,
+    "fonte": "print PES Real Madrid 2026-08-02"
+  },
+  {
+    "playerId": 107889,
+    "clubId": 109,
+    "nome": "Ferland Mendy",
+    "posicaoPes": "LE",
+    "overallPesJogo": 83,
+    "fonte": "print PES Real Madrid 2026-08-02"
+  },
+  {
+    "playerId": 114935,
+    "clubId": 389,
+    "nome": "Morgan Gibbs-White",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 80,
+    "fonte": "print PES Nottingham Forest 2026-08-02"
+  },
+  {
+    "playerId": 140816,
+    "clubId": 389,
+    "nome": "Elliot Anderson",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 74,
+    "fonte": "print PES Nottingham Forest 2026-08-02"
+  },
+  {
+    "playerId": 101504,
+    "clubId": 208,
+    "nome": "Mateus Mané",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 74,
+    "fonte": "print PES Wolverhampton 2026-08-02"
+  },
+  {
+    "playerId": 140723,
+    "clubId": 208,
+    "nome": "Tawanda Chirewa",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 74,
+    "fonte": "print PES Wolverhampton 2026-08-02"
+  },
+  {
+    "playerId": 111808,
+    "clubId": 124,
+    "nome": "Dodô",
+    "posicaoPes": "LD",
+    "overallPesJogo": 80,
+    "fonte": "print PES Fiorentina 2026-08-02"
+  },
+  {
+    "playerId": 133709,
+    "clubId": 124,
+    "nome": "Tariq Lamptey",
+    "posicaoPes": "LD",
+    "overallPesJogo": 76,
+    "fonte": "print PES Fiorentina 2026-08-02"
+  },
+  {
+    "playerId": 108657,
+    "clubId": 119,
+    "nome": "Lautaro Martínez",
+    "posicaoPes": "CA",
+    "overallPesJogo": 89,
+    "fonte": "print PES Internazionale 2026-08-02"
+  },
+  {
+    "playerId": 140153,
+    "clubId": 119,
+    "nome": "Pio Esposito",
+    "posicaoPes": "CA",
+    "overallPesJogo": 77,
+    "fonte": "print PES Internazionale 2026-08-02"
+  },
+  {
+    "playerId": 111986,
+    "clubId": 119,
+    "nome": "Denzel Dumfries",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 88,
+    "fonte": "print PES Internazionale 2026-08-02"
+  },
+  {
+    "playerId": 107686,
+    "clubId": 119,
+    "nome": "Federico Dimarco",
+    "posicaoPes": "MLE",
+    "overallPesJogo": 87,
+    "fonte": "print PES Internazionale 2026-08-02"
+  },
+  {
+    "playerId": 41074,
+    "clubId": 120,
+    "nome": "Kenan Yildiz",
+    "posicaoPes": "SA",
+    "overallPesJogo": 80,
+    "fonte": "print PES Juventus 2026-08-02"
+  },
+  {
+    "playerId": 132684,
+    "clubId": 122,
+    "nome": "Daniel Maldini",
+    "posicaoPes": "SA",
+    "overallPesJogo": 77,
+    "fonte": "print PES Lazio 2026-08-02"
+  },
+  {
+    "playerId": 103372,
+    "clubId": 121,
+    "nome": "Andrej Kostic",
+    "posicaoPes": "CA",
+    "overallPesJogo": 77,
+    "fonte": "print PES Milan 2026-08-02"
+  },
+  {
+    "playerId": 139854,
+    "clubId": 121,
+    "nome": "Niclas Füllkrug",
+    "posicaoPes": "CA",
+    "overallPesJogo": 81,
+    "fonte": "print PES Milan 2026-08-02"
+  },
+  {
+    "playerId": 140241,
+    "clubId": 121,
+    "nome": "Santiago Giménez",
+    "posicaoPes": "CA",
+    "overallPesJogo": 84,
+    "fonte": "print PES Milan 2026-08-02"
+  },
+  {
+    "playerId": 58147,
+    "clubId": 125,
+    "nome": "Robinio Vaz",
+    "posicaoPes": "CA",
+    "overallPesJogo": 72,
+    "fonte": "print PES Roma 2026-08-02"
+  },
+  {
+    "playerId": 124029,
+    "clubId": 125,
+    "nome": "Artem Dovbyk",
+    "posicaoPes": "CA",
+    "overallPesJogo": 83,
+    "fonte": "print PES Roma 2026-08-02"
+  },
+  {
+    "playerId": 40002,
+    "clubId": 108,
+    "nome": "Robert Lewandowski",
+    "posicaoPes": "CA",
+    "overallPesJogo": 89,
+    "fonte": "print PES Barcelona 2026-08-02"
+  },
+  {
+    "playerId": 44688,
+    "clubId": 108,
+    "nome": "Hamza Abdelkarim",
+    "posicaoPes": "CA",
+    "overallPesJogo": 75,
+    "fonte": "print PES Barcelona 2026-08-02"
+  },
+  {
+    "playerId": 47787,
+    "clubId": 108,
+    "nome": "João Cancelo",
+    "posicaoPes": "LD",
+    "overallPesJogo": 85,
+    "fonte": "print PES Barcelona 2026-08-02"
+  },
+  {
+    "playerId": 110784,
+    "clubId": 108,
+    "nome": "Jules Koundé",
+    "posicaoPes": "LD",
+    "overallPesJogo": 86,
+    "fonte": "print PES Barcelona 2026-08-02"
+  },
+  {
+    "playerId": 126337,
+    "clubId": 108,
+    "nome": "Eric García",
+    "posicaoPes": "LD",
+    "overallPesJogo": 82,
+    "fonte": "print PES Barcelona 2026-08-02"
+  },
+  {
+    "playerId": 17146,
+    "clubId": 259,
+    "nome": "Rubén Sánchez",
+    "posicaoPes": "LD",
+    "overallPesJogo": 75,
+    "fonte": "print PES Espanyol 2026-08-02"
+  },
+  {
+    "playerId": 131154,
+    "clubId": 259,
+    "nome": "Omar El Hilali",
+    "posicaoPes": "LD",
+    "overallPesJogo": 68,
+    "fonte": "print PES Espanyol 2026-08-02"
+  },
+  {
+    "playerId": 109083,
+    "clubId": 259,
+    "nome": "Carlos Romero",
+    "posicaoPes": "LE",
+    "overallPesJogo": 68,
+    "fonte": "print PES Espanyol 2026-08-02"
+  },
+  {
+    "playerId": 125763,
+    "clubId": 259,
+    "nome": "Javi Hernández",
+    "posicaoPes": "LE",
+    "overallPesJogo": 78,
+    "fonte": "print PES Espanyol 2026-08-02"
+  },
+  {
+    "playerId": 140534,
+    "clubId": 259,
+    "nome": "José Salinas",
+    "posicaoPes": "LE",
+    "overallPesJogo": 72,
+    "fonte": "print PES Espanyol 2026-08-02"
+  },
+  {
+    "playerId": 34606,
+    "clubId": 258,
+    "nome": "Adama Boiro",
+    "posicaoPes": "LE",
+    "overallPesJogo": 76,
+    "fonte": "print PES Athletic Club Bilbao 2026-08-02"
+  },
+  {
+    "playerId": 100224,
+    "clubId": 258,
+    "nome": "Yuri Berchiche",
+    "posicaoPes": "LE",
+    "overallPesJogo": 81,
+    "fonte": "print PES Athletic Club Bilbao 2026-08-02"
+  },
+  {
+    "playerId": 138216,
+    "clubId": 361,
+    "nome": "Marc Aguado",
+    "posicaoPes": "MLE",
+    "overallPesJogo": 67,
+    "fonte": "print PES Elche 2026-08-02"
+  },
+  {
+    "playerId": 113406,
+    "clubId": 4269,
+    "nome": "Ovie Ejaria",
+    "posicaoPes": "MLE",
+    "overallPesJogo": 73,
+    "fonte": "print PES Real Oviedo 2026-08-02"
+  },
+  {
+    "playerId": 117836,
+    "clubId": 267,
+    "nome": "Tajon Buchanan",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 79,
+    "fonte": "print PES Villarreal 2026-08-02"
+  },
+  {
+    "playerId": 140080,
+    "clubId": 180,
+    "nome": "Romain Faivre",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 74,
+    "fonte": "print PES Auxerre 2026-08-02"
+  },
+  {
+    "playerId": 138466,
+    "clubId": 413,
+    "nome": "Elies Mahmoud",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 66,
+    "fonte": "print PES Le Havre 2026-08-02"
+  },
+  {
+    "playerId": 100964,
+    "clubId": 182,
+    "nome": "Jimmy Cabot",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 75,
+    "fonte": "print PES Racing Club de Lens 2026-08-02"
+  },
+  {
+    "playerId": 100870,
+    "clubId": 418,
+    "nome": "Florian Tardieu",
+    "posicaoPes": "MLE",
+    "overallPesJogo": 69,
+    "fonte": "print PES Saint-Étienne 2026-08-02"
+  },
+  {
+    "playerId": 134913,
+    "clubId": 406,
+    "nome": "T. Vargas",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 67,
+    "fonte": "print PES Sporting Bastia 2026-08-02"
+  },
+  {
+    "playerId": 53796,
+    "clubId": 4046,
+    "nome": "Yonser Parra",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 69,
+    "fonte": "print PES Deportivo La Guaira 2026-08-02"
+  },
+  {
+    "playerId": 122075,
+    "clubId": 4046,
+    "nome": "Joiser Arias",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 69,
+    "fonte": "print PES Deportivo La Guaira 2026-08-02"
+  },
+  {
+    "playerId": 140708,
+    "clubId": 5668,
+    "nome": "Angelo Lucena",
+    "posicaoPes": "MLD",
+    "overallPesJogo": 70,
+    "fonte": "print PES Metropolitanos FC 2026-08-02"
+  },
+  {
+    "playerId": 123866,
+    "clubId": 5669,
+    "nome": "Joantony Carmona",
+    "posicaoPes": "MLE",
+    "overallPesJogo": 71,
+    "fonte": "print PES Monagas 2026-08-02"
+  },
+  {
+    "playerId": 15323,
+    "clubId": 289,
+    "nome": "Cauã Soares",
+    "posicaoPes": "SA",
+    "overallPesJogo": 71,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 46037,
+    "clubId": 289,
+    "nome": "Bernard",
+    "posicaoPes": "SA",
+    "overallPesJogo": 76,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 54265,
+    "clubId": 289,
+    "nome": "Reinier",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 78,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 55095,
+    "clubId": 289,
+    "nome": "Gustavo Scarpa",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 79,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 119142,
+    "clubId": 289,
+    "nome": "Igor Gomes",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 78,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 128881,
+    "clubId": 289,
+    "nome": "Mateus Iseppe",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 71,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 1073864466,
+    "clubId": 289,
+    "nome": "Mamady Cissé",
+    "posicaoPes": "MAT",
+    "overallPesJogo": 72,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 137993,
+    "clubId": 289,
+    "nome": "Alan Franco",
+    "posicaoPes": "MLG",
+    "overallPesJogo": 78,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 111200,
+    "clubId": 289,
+    "nome": "Maycon",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 80,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 100499,
+    "clubId": 289,
+    "nome": "Gabriel Veneno",
+    "posicaoPes": "PTD",
+    "overallPesJogo": 70,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 123428,
+    "clubId": 289,
+    "nome": "Junior Santos",
+    "posicaoPes": "PTD",
+    "overallPesJogo": 77,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 63030,
+    "clubId": 289,
+    "nome": "Dudu",
+    "posicaoPes": "PTE",
+    "overallPesJogo": 78,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 129030,
+    "clubId": 289,
+    "nome": "Tomás Cuello",
+    "posicaoPes": "PTE",
+    "overallPesJogo": 78,
+    "fonte": "print PES Atlético Mineiro 2026-08-02"
+  },
+  {
+    "playerId": 47244,
+    "clubId": 2453,
+    "nome": "Ruan Pablo",
+    "posicaoPes": "PTD",
+    "overallPesJogo": 70,
+    "fonte": "print PES Bahia 2026-08-02"
+  },
+  {
+    "playerId": 1073877592,
+    "clubId": 2453,
+    "nome": "Lyan",
+    "posicaoPes": "PTD",
+    "overallPesJogo": 69,
+    "fonte": "print PES Bahia 2026-08-02"
+  },
+  {
+    "playerId": 125301,
+    "clubId": 2453,
+    "nome": "Ademir",
+    "posicaoPes": "PTD",
+    "overallPesJogo": 78,
+    "fonte": "print PES Bahia 2026-08-02"
+  },
+  {
+    "playerId": 117858,
+    "clubId": 2453,
+    "nome": "Mateo Sanabria",
+    "posicaoPes": "PTE",
+    "overallPesJogo": 78,
+    "fonte": "print PES Bahia 2026-08-02"
+  },
+  {
+    "playerId": 122990,
+    "clubId": 2453,
+    "nome": "Erick Pulga",
+    "posicaoPes": "PTE",
+    "overallPesJogo": 79,
+    "fonte": "print PES Bahia 2026-08-02"
+  },
+  {
+    "playerId": 45641,
+    "clubId": 1246,
+    "nome": "Allan",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 80,
+    "fonte": "print PES Botafogo 2026-08-02"
+  },
+  {
+    "playerId": 55082,
+    "clubId": 1246,
+    "nome": "Danilo",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 80,
+    "fonte": "print PES Botafogo 2026-08-02"
+  },
+  {
+    "playerId": 63718,
+    "clubId": 1246,
+    "nome": "Wallace Davi",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 70,
+    "fonte": "print PES Botafogo 2026-08-02"
+  },
+  {
+    "playerId": 1073857535,
+    "clubId": 1246,
+    "nome": "Arthur Novaes",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 71,
+    "fonte": "print PES Botafogo 2026-08-02"
+  },
+  {
+    "playerId": 131774,
+    "clubId": 4108,
+    "nome": "Higor Meritão",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 76,
+    "fonte": "print PES Chapecoense 2026-08-02"
+  },
+  {
+    "playerId": 132945,
+    "clubId": 4108,
+    "nome": "Vinicius Balieiro",
+    "posicaoPes": "VOL",
+    "overallPesJogo": 74,
+    "fonte": "print PES Chapecoense 2026-08-02"
+  },
+  {
+    "playerId": 46879,
+    "clubId": 1247,
+    "nome": "Memphis Depay",
+    "posicaoPes": "SA",
+    "overallPesJogo": 81,
+    "fonte": "print PES Corinthians 2026-08-02"
+  },
+  {
+    "playerId": 140629,
+    "clubId": 1931,
+    "nome": "Enzo Vágner",
+    "posicaoPes": "CA",
+    "overallPesJogo": 70,
+    "fonte": "print PES Coritiba 2026-08-02"
+  },
+  {
+    "playerId": 378393,
+    "clubId": 1931,
+    "nome": "Brayan Gravelo",
+    "posicaoPes": "CA",
+    "overallPesJogo": 71,
+    "fonte": "print PES Coritiba 2026-08-02"
+  },
+  {
+    "playerId": 123749,
+    "clubId": 1931,
+    "nome": "Fabinho",
+    "posicaoPes": "SA",
+    "overallPesJogo": 75,
+    "fonte": "print PES Coritiba 2026-08-02"
+  },
+  {
+    "playerId": 110412,
+    "clubId": 274,
+    "nome": "Bruno Rodrigues",
+    "posicaoPes": "SA",
+    "overallPesJogo": 75,
+    "fonte": "print PES Cruzeiro 2026-08-02"
+  },
+  {
+    "playerId": 1073877642,
+    "clubId": 274,
+    "nome": "Neyser Villarreal",
+    "posicaoPes": "CA",
+    "overallPesJogo": 75,
+    "fonte": "print PES Cruzeiro 2026-08-02"
+  },
+  {
+    "playerId": 111408,
+    "clubId": 1248,
+    "nome": "Pedro",
+    "posicaoPes": "CA",
+    "overallPesJogo": 82,
+    "fonte": "print PES Flamengo 2026-08-02"
+  },
+  {
+    "playerId": 60622,
+    "clubId": 1250,
+    "nome": "Martin Braithwaite",
+    "posicaoPes": "CA",
+    "overallPesJogo": 79,
+    "fonte": "print PES Grêmio 2026-08-02"
+  },
+  {
+    "playerId": 141472,
+    "clubId": 1250,
+    "nome": "Thiago Beltrame",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 72,
+    "fonte": "print PES Grêmio 2026-08-02"
+  },
+  {
+    "playerId": 123081,
+    "clubId": 1250,
+    "nome": "Gabriel Grando",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 77,
+    "fonte": "print PES Grêmio 2026-08-02"
+  },
+  {
+    "playerId": 63560,
+    "clubId": 1250,
+    "nome": "Weverton",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 82,
+    "fonte": "print PES Grêmio 2026-08-02"
+  },
+  {
+    "playerId": 33727,
+    "clubId": 1250,
+    "nome": "Gabriel Menegon",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 70,
+    "fonte": "print PES Grêmio 2026-08-02"
+  },
+  {
+    "playerId": 55944,
+    "clubId": 1252,
+    "nome": "Sergio Rochet",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 78,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 134865,
+    "clubId": 1252,
+    "nome": "Anthoni Spier",
+    "posicaoPes": "GOL",
+    "overallPesJogo": 75,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 381932,
+    "clubId": 1252,
+    "nome": "Clayton Sampaio",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 72,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 101250,
+    "clubId": 1252,
+    "nome": "Pedro Kauã",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 71,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 112606,
+    "clubId": 1252,
+    "nome": "João Dalla Corte",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 72,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 121268,
+    "clubId": 1252,
+    "nome": "Victor Gabriel",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 76,
+    "fonte": "print PES Internacional 2026-08-02"
+  },
+  {
+    "playerId": 122484,
+    "clubId": 1252,
+    "nome": "Juninho",
+    "posicaoPes": "ZC",
+    "overallPesJogo": 76,
+    "fonte": "print PES Internacional 2026-08-02"
+  }
+]

@@ -1,0 +1,1184 @@
+{
+  "publicSamples": 1776,
+  "publicByPosition": {
+    "AMF": {
+      "samples": 151,
+      "alpha": 20,
+      "crossValidation": {
+        "count": 151,
+        "exact": 64,
+        "within1": 143,
+        "mae": 0.6291,
+        "maxError": 2
+      },
+      "train": {
+        "count": 151,
+        "exact": 76,
+        "within1": 145,
+        "mae": 0.5364,
+        "maxError": 2
+      }
+    },
+    "CB": {
+      "samples": 140,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 140,
+        "exact": 59,
+        "within1": 127,
+        "mae": 0.7071,
+        "maxError": 4
+      },
+      "train": {
+        "count": 140,
+        "exact": 71,
+        "within1": 133,
+        "mae": 0.5571,
+        "maxError": 3
+      }
+    },
+    "CF": {
+      "samples": 147,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 147,
+        "exact": 73,
+        "within1": 141,
+        "mae": 0.551,
+        "maxError": 3
+      },
+      "train": {
+        "count": 147,
+        "exact": 82,
+        "within1": 145,
+        "mae": 0.4558,
+        "maxError": 2
+      }
+    },
+    "CMF": {
+      "samples": 142,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 142,
+        "exact": 70,
+        "within1": 128,
+        "mae": 0.6408,
+        "maxError": 5
+      },
+      "train": {
+        "count": 142,
+        "exact": 74,
+        "within1": 136,
+        "mae": 0.5423,
+        "maxError": 4
+      }
+    },
+    "DMF": {
+      "samples": 144,
+      "alpha": 20,
+      "crossValidation": {
+        "count": 144,
+        "exact": 66,
+        "within1": 119,
+        "mae": 0.75,
+        "maxError": 3
+      },
+      "train": {
+        "count": 144,
+        "exact": 73,
+        "within1": 127,
+        "mae": 0.625,
+        "maxError": 3
+      }
+    },
+    "GK": {
+      "samples": 137,
+      "alpha": 0.1,
+      "crossValidation": {
+        "count": 137,
+        "exact": 105,
+        "within1": 137,
+        "mae": 0.2336,
+        "maxError": 1
+      },
+      "train": {
+        "count": 137,
+        "exact": 120,
+        "within1": 137,
+        "mae": 0.1241,
+        "maxError": 1
+      }
+    },
+    "LB": {
+      "samples": 137,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 137,
+        "exact": 72,
+        "within1": 126,
+        "mae": 0.5839,
+        "maxError": 4
+      },
+      "train": {
+        "count": 137,
+        "exact": 79,
+        "within1": 130,
+        "mae": 0.4818,
+        "maxError": 3
+      }
+    },
+    "LMF": {
+      "samples": 123,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 123,
+        "exact": 60,
+        "within1": 107,
+        "mae": 0.6748,
+        "maxError": 4
+      },
+      "train": {
+        "count": 123,
+        "exact": 66,
+        "within1": 114,
+        "mae": 0.561,
+        "maxError": 4
+      }
+    },
+    "LWF": {
+      "samples": 144,
+      "alpha": 5,
+      "crossValidation": {
+        "count": 144,
+        "exact": 79,
+        "within1": 136,
+        "mae": 0.5139,
+        "maxError": 3
+      },
+      "train": {
+        "count": 144,
+        "exact": 86,
+        "within1": 141,
+        "mae": 0.4236,
+        "maxError": 2
+      }
+    },
+    "RB": {
+      "samples": 126,
+      "alpha": 5,
+      "crossValidation": {
+        "count": 126,
+        "exact": 74,
+        "within1": 116,
+        "mae": 0.5159,
+        "maxError": 3
+      },
+      "train": {
+        "count": 126,
+        "exact": 82,
+        "within1": 120,
+        "mae": 0.4048,
+        "maxError": 3
+      }
+    },
+    "RMF": {
+      "samples": 120,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 120,
+        "exact": 71,
+        "within1": 116,
+        "mae": 0.4417,
+        "maxError": 2
+      },
+      "train": {
+        "count": 120,
+        "exact": 74,
+        "within1": 117,
+        "mae": 0.4083,
+        "maxError": 2
+      }
+    },
+    "RWF": {
+      "samples": 141,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 141,
+        "exact": 71,
+        "within1": 127,
+        "mae": 0.617,
+        "maxError": 3
+      },
+      "train": {
+        "count": 141,
+        "exact": 80,
+        "within1": 131,
+        "mae": 0.5106,
+        "maxError": 3
+      }
+    },
+    "SS": {
+      "samples": 124,
+      "alpha": 10,
+      "crossValidation": {
+        "count": 124,
+        "exact": 65,
+        "within1": 118,
+        "mae": 0.5323,
+        "maxError": 3
+      },
+      "train": {
+        "count": 124,
+        "exact": 72,
+        "within1": 120,
+        "mae": 0.4516,
+        "maxError": 2
+      }
+    }
+  },
+  "patch": {
+    "count": 104,
+    "exact": 58,
+    "within1": 100,
+    "mae": 0.4808,
+    "maxError": 2
+  },
+  "patchDetails": [
+    {
+      "id": 120134,
+      "name": "Robinho Junior",
+      "position": "RWF",
+      "pes": 73,
+      "calculated": 73,
+      "error": 0,
+      "imlmCurrent": 73
+    },
+    {
+      "id": 40352,
+      "name": "Neymar",
+      "position": "AMF",
+      "pes": 83,
+      "calculated": 83,
+      "error": 0,
+      "imlmCurrent": 83
+    },
+    {
+      "id": 126746,
+      "name": "Gabriel Brazao",
+      "position": "GK",
+      "pes": 79,
+      "calculated": 79,
+      "error": 0,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 129510,
+      "name": "Bento",
+      "position": "GK",
+      "pes": 83,
+      "calculated": 83,
+      "error": 0,
+      "imlmCurrent": 83
+    },
+    {
+      "id": 114593,
+      "name": "Bremer",
+      "position": "CB",
+      "pes": 85,
+      "calculated": 85,
+      "error": 0,
+      "imlmCurrent": 85
+    },
+    {
+      "id": 46815,
+      "name": "Ederson",
+      "position": "GK",
+      "pes": 86,
+      "calculated": 86,
+      "error": 0,
+      "imlmCurrent": 86
+    },
+    {
+      "id": 43989,
+      "name": "Danilo",
+      "position": "CB",
+      "pes": 80,
+      "calculated": 80,
+      "error": 0,
+      "imlmCurrent": 80
+    },
+    {
+      "id": 117505,
+      "name": "Carlos Cuesta",
+      "position": "CB",
+      "pes": 80,
+      "calculated": 80,
+      "error": 0,
+      "imlmCurrent": 80
+    },
+    {
+      "id": 45761,
+      "name": "Germán Cano",
+      "position": "CF",
+      "pes": 79,
+      "calculated": 79,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 1073877550,
+      "name": "John Kennedy",
+      "position": "CF",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 60181,
+      "name": "Gabriel Mercado",
+      "position": "CB",
+      "pes": 77,
+      "calculated": 75,
+      "error": -2,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 45756,
+      "name": "Gustavo Gómez",
+      "position": "CB",
+      "pes": 81,
+      "calculated": 81,
+      "error": 0,
+      "imlmCurrent": 81
+    },
+    {
+      "id": 105304,
+      "name": "Agustín Rossi",
+      "position": "GK",
+      "pes": 82,
+      "calculated": 82,
+      "error": 0,
+      "imlmCurrent": 82
+    },
+    {
+      "id": 121259,
+      "name": "Hugo Souza",
+      "position": "GK",
+      "pes": 81,
+      "calculated": 82,
+      "error": 1,
+      "imlmCurrent": 82
+    },
+    {
+      "id": 140306,
+      "name": "Cristian Medina",
+      "position": "CMF",
+      "pes": 81,
+      "calculated": 81,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 104527,
+      "name": "Gerson",
+      "position": "CMF",
+      "pes": 81,
+      "calculated": 82,
+      "error": 1,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 127062,
+      "name": "Kaio Jorge",
+      "position": "CF",
+      "pes": 81,
+      "calculated": 81,
+      "error": 0,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 55803,
+      "name": "Ruan Índio",
+      "position": "CF",
+      "pes": 70,
+      "calculated": 70,
+      "error": 0,
+      "imlmCurrent": 74
+    },
+    {
+      "id": 127571,
+      "name": "Fran García",
+      "position": "LB",
+      "pes": 83,
+      "calculated": 83,
+      "error": 0,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 107889,
+      "name": "Ferland Mendy",
+      "position": "LB",
+      "pes": 83,
+      "calculated": 84,
+      "error": 1,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 114935,
+      "name": "Morgan Gibbs-White",
+      "position": "AMF",
+      "pes": 80,
+      "calculated": 80,
+      "error": 0,
+      "imlmCurrent": 76
+    },
+    {
+      "id": 140816,
+      "name": "Elliot Anderson",
+      "position": "AMF",
+      "pes": 74,
+      "calculated": 74,
+      "error": 0,
+      "imlmCurrent": 71
+    },
+    {
+      "id": 101504,
+      "name": "Mateus Mané",
+      "position": "AMF",
+      "pes": 74,
+      "calculated": 73,
+      "error": -1,
+      "imlmCurrent": 73
+    },
+    {
+      "id": 140723,
+      "name": "Tawanda Chirewa",
+      "position": "AMF",
+      "pes": 74,
+      "calculated": 73,
+      "error": -1,
+      "imlmCurrent": 73
+    },
+    {
+      "id": 111808,
+      "name": "Dodô",
+      "position": "RB",
+      "pes": 80,
+      "calculated": 80,
+      "error": 0,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 133709,
+      "name": "Tariq Lamptey",
+      "position": "RB",
+      "pes": 76,
+      "calculated": 76,
+      "error": 0,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 108657,
+      "name": "Lautaro Martínez",
+      "position": "CF",
+      "pes": 89,
+      "calculated": 89,
+      "error": 0,
+      "imlmCurrent": 83
+    },
+    {
+      "id": 140153,
+      "name": "Pio Esposito",
+      "position": "CF",
+      "pes": 77,
+      "calculated": 76,
+      "error": -1,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 111986,
+      "name": "Denzel Dumfries",
+      "position": "RMF",
+      "pes": 88,
+      "calculated": 90,
+      "error": 2,
+      "imlmCurrent": 81
+    },
+    {
+      "id": 107686,
+      "name": "Federico Dimarco",
+      "position": "LMF",
+      "pes": 87,
+      "calculated": 88,
+      "error": 1,
+      "imlmCurrent": 81
+    },
+    {
+      "id": 41074,
+      "name": "Kenan Yildiz",
+      "position": "SS",
+      "pes": 80,
+      "calculated": 80,
+      "error": 0,
+      "imlmCurrent": 76
+    },
+    {
+      "id": 132684,
+      "name": "Daniel Maldini",
+      "position": "SS",
+      "pes": 77,
+      "calculated": 76,
+      "error": -1,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 103372,
+      "name": "Andrej Kostic",
+      "position": "CF",
+      "pes": 77,
+      "calculated": 78,
+      "error": 1,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 139854,
+      "name": "Niclas Füllkrug",
+      "position": "CF",
+      "pes": 81,
+      "calculated": 80,
+      "error": -1,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 140241,
+      "name": "Santiago Giménez",
+      "position": "CF",
+      "pes": 84,
+      "calculated": 84,
+      "error": 0,
+      "imlmCurrent": 81
+    },
+    {
+      "id": 58147,
+      "name": "Robinio Vaz",
+      "position": "CF",
+      "pes": 72,
+      "calculated": 73,
+      "error": 1,
+      "imlmCurrent": 76
+    },
+    {
+      "id": 124029,
+      "name": "Artem Dovbyk",
+      "position": "CF",
+      "pes": 83,
+      "calculated": 82,
+      "error": -1,
+      "imlmCurrent": 80
+    },
+    {
+      "id": 40002,
+      "name": "Robert Lewandowski",
+      "position": "CF",
+      "pes": 89,
+      "calculated": 90,
+      "error": 1,
+      "imlmCurrent": 86
+    },
+    {
+      "id": 44688,
+      "name": "Hamza Abdelkarim",
+      "position": "CF",
+      "pes": 75,
+      "calculated": 75,
+      "error": 0,
+      "imlmCurrent": 76
+    },
+    {
+      "id": 47787,
+      "name": "João Cancelo",
+      "position": "RB",
+      "pes": 85,
+      "calculated": 86,
+      "error": 1,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 110784,
+      "name": "Jules Koundé",
+      "position": "RB",
+      "pes": 86,
+      "calculated": 87,
+      "error": 1,
+      "imlmCurrent": 82
+    },
+    {
+      "id": 126337,
+      "name": "Eric García",
+      "position": "RB",
+      "pes": 82,
+      "calculated": 81,
+      "error": -1,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 17146,
+      "name": "Rubén Sánchez",
+      "position": "RB",
+      "pes": 75,
+      "calculated": 75,
+      "error": 0,
+      "imlmCurrent": 76
+    },
+    {
+      "id": 131154,
+      "name": "Omar El Hilali",
+      "position": "RB",
+      "pes": 68,
+      "calculated": 68,
+      "error": 0,
+      "imlmCurrent": 69
+    },
+    {
+      "id": 109083,
+      "name": "Carlos Romero",
+      "position": "LB",
+      "pes": 68,
+      "calculated": 68,
+      "error": 0,
+      "imlmCurrent": 69
+    },
+    {
+      "id": 125763,
+      "name": "Javi Hernández",
+      "position": "LB",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 140534,
+      "name": "José Salinas",
+      "position": "LB",
+      "pes": 72,
+      "calculated": 71,
+      "error": -1,
+      "imlmCurrent": 71
+    },
+    {
+      "id": 34606,
+      "name": "Adama Boiro",
+      "position": "LB",
+      "pes": 76,
+      "calculated": 76,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 100224,
+      "name": "Yuri Berchiche",
+      "position": "LB",
+      "pes": 81,
+      "calculated": 81,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 138216,
+      "name": "Marc Aguado",
+      "position": "LMF",
+      "pes": 67,
+      "calculated": 68,
+      "error": 1,
+      "imlmCurrent": 70
+    },
+    {
+      "id": 113406,
+      "name": "Ovie Ejaria",
+      "position": "LMF",
+      "pes": 73,
+      "calculated": 72,
+      "error": -1,
+      "imlmCurrent": 71
+    },
+    {
+      "id": 117836,
+      "name": "Tajon Buchanan",
+      "position": "RMF",
+      "pes": 79,
+      "calculated": 78,
+      "error": -1,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 140080,
+      "name": "Romain Faivre",
+      "position": "RMF",
+      "pes": 74,
+      "calculated": 74,
+      "error": 0,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 138466,
+      "name": "Elies Mahmoud",
+      "position": "RMF",
+      "pes": 66,
+      "calculated": 65,
+      "error": -1,
+      "imlmCurrent": 69
+    },
+    {
+      "id": 100964,
+      "name": "Jimmy Cabot",
+      "position": "RMF",
+      "pes": 75,
+      "calculated": 75,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 100870,
+      "name": "Florian Tardieu",
+      "position": "LMF",
+      "pes": 69,
+      "calculated": 70,
+      "error": 1,
+      "imlmCurrent": 70
+    },
+    {
+      "id": 134913,
+      "name": "T. Vargas",
+      "position": "RMF",
+      "pes": 67,
+      "calculated": 66,
+      "error": -1,
+      "imlmCurrent": 68
+    },
+    {
+      "id": 53796,
+      "name": "Yonser Parra",
+      "position": "RMF",
+      "pes": 69,
+      "calculated": 68,
+      "error": -1,
+      "imlmCurrent": 69
+    },
+    {
+      "id": 122075,
+      "name": "Joiser Arias",
+      "position": "RMF",
+      "pes": 69,
+      "calculated": 69,
+      "error": 0,
+      "imlmCurrent": 70
+    },
+    {
+      "id": 140708,
+      "name": "Angelo Lucena",
+      "position": "RMF",
+      "pes": 70,
+      "calculated": 69,
+      "error": -1,
+      "imlmCurrent": 70
+    },
+    {
+      "id": 123866,
+      "name": "Joantony Carmona",
+      "position": "LMF",
+      "pes": 71,
+      "calculated": 70,
+      "error": -1,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 15323,
+      "name": "Cauã Soares",
+      "position": "SS",
+      "pes": 71,
+      "calculated": 71,
+      "error": 0,
+      "imlmCurrent": 70
+    },
+    {
+      "id": 46037,
+      "name": "Bernard",
+      "position": "SS",
+      "pes": 76,
+      "calculated": 76,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 54265,
+      "name": "Reinier",
+      "position": "AMF",
+      "pes": 78,
+      "calculated": 77,
+      "error": -1,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 55095,
+      "name": "Gustavo Scarpa",
+      "position": "AMF",
+      "pes": 79,
+      "calculated": 79,
+      "error": 0,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 119142,
+      "name": "Igor Gomes",
+      "position": "AMF",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 128881,
+      "name": "Mateus Iseppe",
+      "position": "AMF",
+      "pes": 71,
+      "calculated": 71,
+      "error": 0,
+      "imlmCurrent": 73
+    },
+    {
+      "id": 1073864466,
+      "name": "Mamady Cissé",
+      "position": "AMF",
+      "pes": 72,
+      "calculated": 71,
+      "error": -1,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 137993,
+      "name": "Alan Franco",
+      "position": "CMF",
+      "pes": 78,
+      "calculated": 79,
+      "error": 1,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 111200,
+      "name": "Maycon",
+      "position": "DMF",
+      "pes": 80,
+      "calculated": 78,
+      "error": -2,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 100499,
+      "name": "Gabriel Veneno",
+      "position": "RWF",
+      "pes": 70,
+      "calculated": 71,
+      "error": 1,
+      "imlmCurrent": 71
+    },
+    {
+      "id": 123428,
+      "name": "Junior Santos",
+      "position": "RWF",
+      "pes": 77,
+      "calculated": 77,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 63030,
+      "name": "Dudu",
+      "position": "LWF",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 129030,
+      "name": "Tomás Cuello",
+      "position": "LWF",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 74
+    },
+    {
+      "id": 47244,
+      "name": "Ruan Pablo",
+      "position": "RWF",
+      "pes": 70,
+      "calculated": 70,
+      "error": 0,
+      "imlmCurrent": 69
+    },
+    {
+      "id": 1073877592,
+      "name": "Lyan",
+      "position": "RWF",
+      "pes": 69,
+      "calculated": 69,
+      "error": 0,
+      "imlmCurrent": 69
+    },
+    {
+      "id": 125301,
+      "name": "Ademir",
+      "position": "RWF",
+      "pes": 78,
+      "calculated": 77,
+      "error": -1,
+      "imlmCurrent": 74
+    },
+    {
+      "id": 117858,
+      "name": "Mateo Sanabria",
+      "position": "LWF",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 122990,
+      "name": "Erick Pulga",
+      "position": "LWF",
+      "pes": 79,
+      "calculated": 79,
+      "error": 0,
+      "imlmCurrent": 76
+    },
+    {
+      "id": 45641,
+      "name": "Allan",
+      "position": "DMF",
+      "pes": 80,
+      "calculated": 80,
+      "error": 0,
+      "imlmCurrent": 80
+    },
+    {
+      "id": 55082,
+      "name": "Danilo",
+      "position": "DMF",
+      "pes": 80,
+      "calculated": 79,
+      "error": -1,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 63718,
+      "name": "Wallace Davi",
+      "position": "DMF",
+      "pes": 70,
+      "calculated": 70,
+      "error": 0,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 1073857535,
+      "name": "Arthur Novaes",
+      "position": "DMF",
+      "pes": 71,
+      "calculated": 70,
+      "error": -1,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 131774,
+      "name": "Higor Meritão",
+      "position": "DMF",
+      "pes": 76,
+      "calculated": 75,
+      "error": -1,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 132945,
+      "name": "Vinicius Balieiro",
+      "position": "DMF",
+      "pes": 74,
+      "calculated": 73,
+      "error": -1,
+      "imlmCurrent": 74
+    },
+    {
+      "id": 46879,
+      "name": "Memphis Depay",
+      "position": "SS",
+      "pes": 81,
+      "calculated": 81,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 140629,
+      "name": "Enzo Vágner",
+      "position": "CF",
+      "pes": 70,
+      "calculated": 70,
+      "error": 0,
+      "imlmCurrent": 70
+    },
+    {
+      "id": 378393,
+      "name": "Brayan Gravelo",
+      "position": "CF",
+      "pes": 71,
+      "calculated": 70,
+      "error": -1,
+      "imlmCurrent": 74
+    },
+    {
+      "id": 123749,
+      "name": "Fabinho",
+      "position": "SS",
+      "pes": 75,
+      "calculated": 73,
+      "error": -2,
+      "imlmCurrent": 73
+    },
+    {
+      "id": 110412,
+      "name": "Bruno Rodrigues",
+      "position": "SS",
+      "pes": 75,
+      "calculated": 74,
+      "error": -1,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 1073877642,
+      "name": "Neyser Villarreal",
+      "position": "CF",
+      "pes": 75,
+      "calculated": 75,
+      "error": 0,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 111408,
+      "name": "Pedro",
+      "position": "CF",
+      "pes": 82,
+      "calculated": 82,
+      "error": 0,
+      "imlmCurrent": 80
+    },
+    {
+      "id": 60622,
+      "name": "Martin Braithwaite",
+      "position": "CF",
+      "pes": 79,
+      "calculated": 78,
+      "error": -1,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 141472,
+      "name": "Thiago Beltrame",
+      "position": "GK",
+      "pes": 72,
+      "calculated": 72,
+      "error": 0,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 123081,
+      "name": "Gabriel Grando",
+      "position": "GK",
+      "pes": 77,
+      "calculated": 77,
+      "error": 0,
+      "imlmCurrent": 78
+    },
+    {
+      "id": 63560,
+      "name": "Weverton",
+      "position": "GK",
+      "pes": 82,
+      "calculated": 82,
+      "error": 0,
+      "imlmCurrent": 83
+    },
+    {
+      "id": 33727,
+      "name": "Gabriel Menegon",
+      "position": "GK",
+      "pes": 70,
+      "calculated": 71,
+      "error": 1,
+      "imlmCurrent": 72
+    },
+    {
+      "id": 55944,
+      "name": "Sergio Rochet",
+      "position": "GK",
+      "pes": 78,
+      "calculated": 78,
+      "error": 0,
+      "imlmCurrent": 79
+    },
+    {
+      "id": 134865,
+      "name": "Anthoni Spier",
+      "position": "GK",
+      "pes": 75,
+      "calculated": 75,
+      "error": 0,
+      "imlmCurrent": 77
+    },
+    {
+      "id": 381932,
+      "name": "Clayton Sampaio",
+      "position": "CB",
+      "pes": 72,
+      "calculated": 72,
+      "error": 0,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 101250,
+      "name": "Pedro Kauã",
+      "position": "CB",
+      "pes": 71,
+      "calculated": 70,
+      "error": -1,
+      "imlmCurrent": 73
+    },
+    {
+      "id": 112606,
+      "name": "João Dalla Corte",
+      "position": "CB",
+      "pes": 72,
+      "calculated": 72,
+      "error": 0,
+      "imlmCurrent": 74
+    },
+    {
+      "id": 121268,
+      "name": "Victor Gabriel",
+      "position": "CB",
+      "pes": 76,
+      "calculated": 77,
+      "error": 1,
+      "imlmCurrent": 75
+    },
+    {
+      "id": 122484,
+      "name": "Juninho",
+      "position": "CB",
+      "pes": 76,
+      "calculated": 75,
+      "error": -1,
+      "imlmCurrent": 78
+    }
+  ]
+}

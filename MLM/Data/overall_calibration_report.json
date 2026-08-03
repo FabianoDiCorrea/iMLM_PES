@@ -1,0 +1,1962 @@
+{
+  "summary": {
+    "samples": 104,
+    "missing": [],
+    "currentOk": 22,
+    "currentMae": 1.9134615384615385
+  },
+  "groups": {
+    "ATACANTE": {
+      "samples": 7,
+      "alpha": 0.01,
+      "features": [
+        "atk",
+        "finish",
+        "ball_ctrl",
+        "tight_pos",
+        "drib",
+        "lowpass",
+        "speed",
+        "exp_pwr",
+        "kick_pwr",
+        "header",
+        "jump",
+        "phys_cont",
+        "body_ctrl",
+        "stamina",
+        "form",
+        "weak_use",
+        "weak_acc"
+      ],
+      "trainMetrics": {
+        "count": 7,
+        "ok": 7,
+        "max_abs_error": 0,
+        "mae": 0.0
+      },
+      "leaveOneOutMetrics": {
+        "count": 7,
+        "ok": 1,
+        "max_abs_error": 4,
+        "mae": 1.4285714285714286
+      },
+      "interceptScaled": 76.42857142857143,
+      "topCoefficients": [
+        {
+          "feature": "phys_cont",
+          "scaledCoef": 0.6290390601183211,
+          "rawWeightApprox": 0.07209767135001312
+        },
+        {
+          "feature": "tight_pos",
+          "scaledCoef": 0.569710307610796,
+          "rawWeightApprox": 0.11884554918320854
+        },
+        {
+          "feature": "kick_pwr",
+          "scaledCoef": 0.5211409815505071,
+          "rawWeightApprox": 0.133028393475371
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.49368009926526935,
+          "rawWeightApprox": 0.11039022610959862
+        },
+        {
+          "feature": "atk",
+          "scaledCoef": 0.48204828457251403,
+          "rawWeightApprox": 0.1892234784412724
+        },
+        {
+          "feature": "ball_ctrl",
+          "scaledCoef": 0.4691041748948643,
+          "rawWeightApprox": 0.11384282781561175
+        },
+        {
+          "feature": "finish",
+          "scaledCoef": 0.4685438180775509,
+          "rawWeightApprox": 0.0956411063687857
+        },
+        {
+          "feature": "drib",
+          "scaledCoef": 0.4313580563803457,
+          "rawWeightApprox": 0.11682820994875853
+        },
+        {
+          "feature": "form",
+          "scaledCoef": 0.32401337025637794,
+          "rawWeightApprox": 0.4448097493544479
+        },
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": -0.3195070117144747,
+          "rawWeightApprox": -0.08732257094616377
+        }
+      ],
+      "details": [
+        {
+          "playerId": 41074,
+          "clubId": 120,
+          "nome": "Kenan Yildiz",
+          "posicaoPes": "SA",
+          "pes": 80,
+          "imlmAtual": 76,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 132684,
+          "clubId": 122,
+          "nome": "Daniel Maldini",
+          "posicaoPes": "SA",
+          "pes": 77,
+          "imlmAtual": 75,
+          "calibrado": 77,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 15323,
+          "clubId": 289,
+          "nome": "Cauã Soares",
+          "posicaoPes": "SA",
+          "pes": 71,
+          "imlmAtual": 70,
+          "calibrado": 71,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 46037,
+          "clubId": 289,
+          "nome": "Bernard",
+          "posicaoPes": "SA",
+          "pes": 76,
+          "imlmAtual": 75,
+          "calibrado": 76,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 46879,
+          "clubId": 1247,
+          "nome": "Memphis Depay",
+          "posicaoPes": "SA",
+          "pes": 81,
+          "imlmAtual": 77,
+          "calibrado": 81,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 123749,
+          "clubId": 1931,
+          "nome": "Fabinho",
+          "posicaoPes": "SA",
+          "pes": 75,
+          "imlmAtual": 73,
+          "calibrado": 75,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 110412,
+          "clubId": 274,
+          "nome": "Bruno Rodrigues",
+          "posicaoPes": "SA",
+          "pes": 75,
+          "imlmAtual": 72,
+          "calibrado": 75,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        }
+      ]
+    },
+    "CA": {
+      "samples": 18,
+      "alpha": 5.0,
+      "features": [
+        "atk",
+        "finish",
+        "header",
+        "ball_ctrl",
+        "tight_pos",
+        "drib",
+        "lowpass",
+        "speed",
+        "exp_pwr",
+        "kick_pwr",
+        "jump",
+        "phys_cont",
+        "body_ctrl",
+        "stamina",
+        "aggres",
+        "height",
+        "weight",
+        "form",
+        "injury",
+        "weak_use",
+        "weak_acc"
+      ],
+      "trainMetrics": {
+        "count": 18,
+        "ok": 9,
+        "max_abs_error": 1,
+        "mae": 0.5
+      },
+      "leaveOneOutMetrics": {
+        "count": 18,
+        "ok": 6,
+        "max_abs_error": 3,
+        "mae": 1.1111111111111112
+      },
+      "interceptScaled": 78.44444444444444,
+      "topCoefficients": [
+        {
+          "feature": "finish",
+          "scaledCoef": 0.8353978038473528,
+          "rawWeightApprox": 0.18363964444636027
+        },
+        {
+          "feature": "kick_pwr",
+          "scaledCoef": 0.814482282736188,
+          "rawWeightApprox": 0.21045003440089813
+        },
+        {
+          "feature": "atk",
+          "scaledCoef": 0.6916456637810268,
+          "rawWeightApprox": 0.15497988384412864
+        },
+        {
+          "feature": "ball_ctrl",
+          "scaledCoef": 0.6459206079908909,
+          "rawWeightApprox": 0.11428847887144744
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.6043141434047993,
+          "rawWeightApprox": 0.12989228126647143
+        },
+        {
+          "feature": "weak_acc",
+          "scaledCoef": 0.5379716331174297,
+          "rawWeightApprox": 0.9317942015901916
+        },
+        {
+          "feature": "drib",
+          "scaledCoef": 0.4722587487304584,
+          "rawWeightApprox": 0.10088424376467982
+        },
+        {
+          "feature": "jump",
+          "scaledCoef": 0.466945156274636,
+          "rawWeightApprox": 0.0915483145035987
+        },
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": 0.4233623707404734,
+          "rawWeightApprox": 0.13207720260550926
+        },
+        {
+          "feature": "tight_pos",
+          "scaledCoef": 0.36494064958413824,
+          "rawWeightApprox": 0.059589654228922595
+        }
+      ],
+      "details": [
+        {
+          "playerId": 45761,
+          "clubId": 1249,
+          "nome": "Germán Cano",
+          "posicaoPes": "CA",
+          "pes": 79,
+          "imlmAtual": 77,
+          "calibrado": 79,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 1073877550,
+          "clubId": 1249,
+          "nome": "John Kennedy",
+          "posicaoPes": "CA",
+          "pes": 78,
+          "imlmAtual": 75,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 127062,
+          "clubId": 274,
+          "nome": "Kaio Jorge",
+          "posicaoPes": "CA",
+          "pes": 81,
+          "imlmAtual": 79,
+          "calibrado": 82,
+          "diffCalibrado": 1,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 55803,
+          "clubId": 274,
+          "nome": "Ruan Índio",
+          "posicaoPes": "CA",
+          "pes": 70,
+          "imlmAtual": 74,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": 4
+        },
+        {
+          "playerId": 108657,
+          "clubId": 119,
+          "nome": "Lautaro Martínez",
+          "posicaoPes": "CA",
+          "pes": 89,
+          "imlmAtual": 83,
+          "calibrado": 89,
+          "diffCalibrado": 0,
+          "diffAtual": -6
+        },
+        {
+          "playerId": 140153,
+          "clubId": 119,
+          "nome": "Pio Esposito",
+          "posicaoPes": "CA",
+          "pes": 77,
+          "imlmAtual": 78,
+          "calibrado": 76,
+          "diffCalibrado": -1,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 103372,
+          "clubId": 121,
+          "nome": "Andrej Kostic",
+          "posicaoPes": "CA",
+          "pes": 77,
+          "imlmAtual": 77,
+          "calibrado": 78,
+          "diffCalibrado": 1,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 139854,
+          "clubId": 121,
+          "nome": "Niclas Füllkrug",
+          "posicaoPes": "CA",
+          "pes": 81,
+          "imlmAtual": 79,
+          "calibrado": 80,
+          "diffCalibrado": -1,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 140241,
+          "clubId": 121,
+          "nome": "Santiago Giménez",
+          "posicaoPes": "CA",
+          "pes": 84,
+          "imlmAtual": 81,
+          "calibrado": 83,
+          "diffCalibrado": -1,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 58147,
+          "clubId": 125,
+          "nome": "Robinio Vaz",
+          "posicaoPes": "CA",
+          "pes": 72,
+          "imlmAtual": 76,
+          "calibrado": 73,
+          "diffCalibrado": 1,
+          "diffAtual": 4
+        },
+        {
+          "playerId": 124029,
+          "clubId": 125,
+          "nome": "Artem Dovbyk",
+          "posicaoPes": "CA",
+          "pes": 83,
+          "imlmAtual": 80,
+          "calibrado": 82,
+          "diffCalibrado": -1,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 40002,
+          "clubId": 108,
+          "nome": "Robert Lewandowski",
+          "posicaoPes": "CA",
+          "pes": 89,
+          "imlmAtual": 86,
+          "calibrado": 89,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 44688,
+          "clubId": 108,
+          "nome": "Hamza Abdelkarim",
+          "posicaoPes": "CA",
+          "pes": 75,
+          "imlmAtual": 76,
+          "calibrado": 76,
+          "diffCalibrado": 1,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 140629,
+          "clubId": 1931,
+          "nome": "Enzo Vágner",
+          "posicaoPes": "CA",
+          "pes": 70,
+          "imlmAtual": 70,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 378393,
+          "clubId": 1931,
+          "nome": "Brayan Gravelo",
+          "posicaoPes": "CA",
+          "pes": 71,
+          "imlmAtual": 74,
+          "calibrado": 71,
+          "diffCalibrado": 0,
+          "diffAtual": 3
+        },
+        {
+          "playerId": 1073877642,
+          "clubId": 274,
+          "nome": "Neyser Villarreal",
+          "posicaoPes": "CA",
+          "pes": 75,
+          "imlmAtual": 78,
+          "calibrado": 75,
+          "diffCalibrado": 0,
+          "diffAtual": 3
+        },
+        {
+          "playerId": 111408,
+          "clubId": 1248,
+          "nome": "Pedro",
+          "posicaoPes": "CA",
+          "pes": 82,
+          "imlmAtual": 80,
+          "calibrado": 82,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 60622,
+          "clubId": 1250,
+          "nome": "Martin Braithwaite",
+          "posicaoPes": "CA",
+          "pes": 79,
+          "imlmAtual": 77,
+          "calibrado": 78,
+          "diffCalibrado": -1,
+          "diffAtual": -2
+        }
+      ]
+    },
+    "GOL": {
+      "samples": 11,
+      "alpha": 0.5,
+      "features": [
+        "gk",
+        "catching",
+        "clearing",
+        "reflex",
+        "cover",
+        "jump",
+        "phys_cont",
+        "body_ctrl",
+        "height",
+        "weight",
+        "form",
+        "injury"
+      ],
+      "trainMetrics": {
+        "count": 11,
+        "ok": 11,
+        "max_abs_error": 0,
+        "mae": 0.0
+      },
+      "leaveOneOutMetrics": {
+        "count": 11,
+        "ok": 7,
+        "max_abs_error": 1,
+        "mae": 0.36363636363636365
+      },
+      "interceptScaled": 78.63636363636364,
+      "topCoefficients": [
+        {
+          "feature": "clearing",
+          "scaledCoef": 1.1672437058293506,
+          "rawWeightApprox": 0.29644068550684266
+        },
+        {
+          "feature": "jump",
+          "scaledCoef": 0.7350027681238318,
+          "rawWeightApprox": 0.40125332393421853
+        },
+        {
+          "feature": "cover",
+          "scaledCoef": 0.7264489267198129,
+          "rawWeightApprox": 0.14828576622133585
+        },
+        {
+          "feature": "catching",
+          "scaledCoef": 0.6686701681330953,
+          "rawWeightApprox": 0.14866164240703428
+        },
+        {
+          "feature": "reflex",
+          "scaledCoef": 0.6668253503740631,
+          "rawWeightApprox": 0.1462343734209756
+        },
+        {
+          "feature": "gk",
+          "scaledCoef": 0.5251206051149336,
+          "rawWeightApprox": 0.12107810526529954
+        },
+        {
+          "feature": "phys_cont",
+          "scaledCoef": 0.2723434033990577,
+          "rawWeightApprox": 0.08453075070050596
+        },
+        {
+          "feature": "height",
+          "scaledCoef": -0.18280718467750437,
+          "rawWeightApprox": -0.046501305134553646
+        },
+        {
+          "feature": "injury",
+          "scaledCoef": -0.09345890532868728,
+          "rawWeightApprox": -0.21918056122476035
+        },
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": 0.03713551109399019,
+          "rawWeightApprox": 0.004381494105822792
+        }
+      ],
+      "details": [
+        {
+          "playerId": 126746,
+          "clubId": 1254,
+          "nome": "Gabriel Brazao",
+          "posicaoPes": "GOL",
+          "pes": 79,
+          "imlmAtual": 79,
+          "calibrado": 79,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 129510,
+          "clubId": 45,
+          "nome": "Bento",
+          "posicaoPes": "GOL",
+          "pes": 83,
+          "imlmAtual": 83,
+          "calibrado": 83,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 46815,
+          "clubId": 45,
+          "nome": "Ederson",
+          "posicaoPes": "GOL",
+          "pes": 86,
+          "imlmAtual": 86,
+          "calibrado": 86,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 105304,
+          "clubId": 1248,
+          "nome": "Agustín Rossi",
+          "posicaoPes": "GOL",
+          "pes": 82,
+          "imlmAtual": 82,
+          "calibrado": 82,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 121259,
+          "clubId": 1247,
+          "nome": "Hugo Souza",
+          "posicaoPes": "GOL",
+          "pes": 81,
+          "imlmAtual": 82,
+          "calibrado": 81,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 141472,
+          "clubId": 1250,
+          "nome": "Thiago Beltrame",
+          "posicaoPes": "GOL",
+          "pes": 72,
+          "imlmAtual": 72,
+          "calibrado": 72,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 123081,
+          "clubId": 1250,
+          "nome": "Gabriel Grando",
+          "posicaoPes": "GOL",
+          "pes": 77,
+          "imlmAtual": 78,
+          "calibrado": 77,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 63560,
+          "clubId": 1250,
+          "nome": "Weverton",
+          "posicaoPes": "GOL",
+          "pes": 82,
+          "imlmAtual": 83,
+          "calibrado": 82,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 33727,
+          "clubId": 1250,
+          "nome": "Gabriel Menegon",
+          "posicaoPes": "GOL",
+          "pes": 70,
+          "imlmAtual": 72,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 55944,
+          "clubId": 1252,
+          "nome": "Sergio Rochet",
+          "posicaoPes": "GOL",
+          "pes": 78,
+          "imlmAtual": 79,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 134865,
+          "clubId": 1252,
+          "nome": "Anthoni Spier",
+          "posicaoPes": "GOL",
+          "pes": 75,
+          "imlmAtual": 77,
+          "calibrado": 75,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        }
+      ]
+    },
+    "LAT": {
+      "samples": 14,
+      "alpha": 2.0,
+      "features": [
+        "speed",
+        "exp_pwr",
+        "stamina",
+        "def",
+        "ball_win",
+        "aggres",
+        "ball_ctrl",
+        "drib",
+        "tight_pos",
+        "lowpass",
+        "loftpass",
+        "atk",
+        "phys_cont",
+        "body_ctrl",
+        "form",
+        "injury",
+        "weak_use",
+        "weak_acc"
+      ],
+      "trainMetrics": {
+        "count": 14,
+        "ok": 8,
+        "max_abs_error": 1,
+        "mae": 0.42857142857142855
+      },
+      "leaveOneOutMetrics": {
+        "count": 14,
+        "ok": 3,
+        "max_abs_error": 3,
+        "mae": 1.2857142857142858
+      },
+      "interceptScaled": 78.07142857142857,
+      "topCoefficients": [
+        {
+          "feature": "ball_ctrl",
+          "scaledCoef": 0.9456752459628007,
+          "rawWeightApprox": 0.16160101449153133
+        },
+        {
+          "feature": "phys_cont",
+          "scaledCoef": 0.9204156440336986,
+          "rawWeightApprox": 0.15388315206739697
+        },
+        {
+          "feature": "stamina",
+          "scaledCoef": 0.7992601889104743,
+          "rawWeightApprox": 0.2055308968675604
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.7464625124842615,
+          "rawWeightApprox": 0.13993801708068115
+        },
+        {
+          "feature": "ball_win",
+          "scaledCoef": 0.7355309086244878,
+          "rawWeightApprox": 0.12413755411224892
+        },
+        {
+          "feature": "def",
+          "scaledCoef": 0.6961651973605462,
+          "rawWeightApprox": 0.11159249861263333
+        },
+        {
+          "feature": "speed",
+          "scaledCoef": 0.6159711500847718,
+          "rawWeightApprox": 0.09232210321009351
+        },
+        {
+          "feature": "aggres",
+          "scaledCoef": 0.575789403122526,
+          "rawWeightApprox": 0.09073987260748093
+        },
+        {
+          "feature": "atk",
+          "scaledCoef": 0.5544881972412995,
+          "rawWeightApprox": 0.07419129429215482
+        },
+        {
+          "feature": "exp_pwr",
+          "scaledCoef": 0.5357130863765067,
+          "rawWeightApprox": 0.06951584416009846
+        }
+      ],
+      "details": [
+        {
+          "playerId": 127571,
+          "clubId": 109,
+          "nome": "Fran García",
+          "posicaoPes": "LE",
+          "pes": 83,
+          "imlmAtual": 79,
+          "calibrado": 83,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 107889,
+          "clubId": 109,
+          "nome": "Ferland Mendy",
+          "posicaoPes": "LE",
+          "pes": 83,
+          "imlmAtual": 79,
+          "calibrado": 83,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 111808,
+          "clubId": 124,
+          "nome": "Dodô",
+          "posicaoPes": "LD",
+          "pes": 80,
+          "imlmAtual": 78,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 133709,
+          "clubId": 124,
+          "nome": "Tariq Lamptey",
+          "posicaoPes": "LD",
+          "pes": 76,
+          "imlmAtual": 78,
+          "calibrado": 77,
+          "diffCalibrado": 1,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 47787,
+          "clubId": 108,
+          "nome": "João Cancelo",
+          "posicaoPes": "LD",
+          "pes": 85,
+          "imlmAtual": 79,
+          "calibrado": 85,
+          "diffCalibrado": 0,
+          "diffAtual": -6
+        },
+        {
+          "playerId": 110784,
+          "clubId": 108,
+          "nome": "Jules Koundé",
+          "posicaoPes": "LD",
+          "pes": 86,
+          "imlmAtual": 82,
+          "calibrado": 85,
+          "diffCalibrado": -1,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 126337,
+          "clubId": 108,
+          "nome": "Eric García",
+          "posicaoPes": "LD",
+          "pes": 82,
+          "imlmAtual": 78,
+          "calibrado": 82,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 17146,
+          "clubId": 259,
+          "nome": "Rubén Sánchez",
+          "posicaoPes": "LD",
+          "pes": 75,
+          "imlmAtual": 76,
+          "calibrado": 75,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 131154,
+          "clubId": 259,
+          "nome": "Omar El Hilali",
+          "posicaoPes": "LD",
+          "pes": 68,
+          "imlmAtual": 69,
+          "calibrado": 69,
+          "diffCalibrado": 1,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 109083,
+          "clubId": 259,
+          "nome": "Carlos Romero",
+          "posicaoPes": "LE",
+          "pes": 68,
+          "imlmAtual": 69,
+          "calibrado": 69,
+          "diffCalibrado": 1,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 125763,
+          "clubId": 259,
+          "nome": "Javi Hernández",
+          "posicaoPes": "LE",
+          "pes": 78,
+          "imlmAtual": 77,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 140534,
+          "clubId": 259,
+          "nome": "José Salinas",
+          "posicaoPes": "LE",
+          "pes": 72,
+          "imlmAtual": 71,
+          "calibrado": 71,
+          "diffCalibrado": -1,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 34606,
+          "clubId": 258,
+          "nome": "Adama Boiro",
+          "posicaoPes": "LE",
+          "pes": 76,
+          "imlmAtual": 75,
+          "calibrado": 77,
+          "diffCalibrado": 1,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 100224,
+          "clubId": 258,
+          "nome": "Yuri Berchiche",
+          "posicaoPes": "LE",
+          "pes": 81,
+          "imlmAtual": 77,
+          "calibrado": 81,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        }
+      ]
+    },
+    "MEIA_OF": {
+      "samples": 10,
+      "alpha": 1.0,
+      "features": [
+        "atk",
+        "ball_ctrl",
+        "tight_pos",
+        "drib",
+        "lowpass",
+        "loftpass",
+        "finish",
+        "place_kick",
+        "swerve",
+        "speed",
+        "exp_pwr",
+        "kick_pwr",
+        "body_ctrl",
+        "stamina",
+        "form",
+        "weak_use",
+        "weak_acc"
+      ],
+      "trainMetrics": {
+        "count": 10,
+        "ok": 10,
+        "max_abs_error": 0,
+        "mae": 0.0
+      },
+      "leaveOneOutMetrics": {
+        "count": 10,
+        "ok": 4,
+        "max_abs_error": 3,
+        "mae": 0.9
+      },
+      "interceptScaled": 76.3,
+      "topCoefficients": [
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": 0.7908266653348139,
+          "rawWeightApprox": 0.16457707450282716
+        },
+        {
+          "feature": "speed",
+          "scaledCoef": 0.5969122346098887,
+          "rawWeightApprox": 0.2969749363640948
+        },
+        {
+          "feature": "ball_ctrl",
+          "scaledCoef": 0.557967342220562,
+          "rawWeightApprox": 0.1449877302742995
+        },
+        {
+          "feature": "form",
+          "scaledCoef": -0.5521743986141859,
+          "rawWeightApprox": -0.35568679779622164
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.4675405929139684,
+          "rawWeightApprox": 0.10069199486726818
+        },
+        {
+          "feature": "exp_pwr",
+          "scaledCoef": 0.4555737787082073,
+          "rawWeightApprox": 0.23878554211396025
+        },
+        {
+          "feature": "loftpass",
+          "scaledCoef": 0.4093059457053125,
+          "rawWeightApprox": 0.08416518470656423
+        },
+        {
+          "feature": "drib",
+          "scaledCoef": 0.3825875876925491,
+          "rawWeightApprox": 0.0972087071580881
+        },
+        {
+          "feature": "kick_pwr",
+          "scaledCoef": 0.3780496835898745,
+          "rawWeightApprox": 0.10550337848099346
+        },
+        {
+          "feature": "weak_use",
+          "scaledCoef": 0.3467169239375743,
+          "rawWeightApprox": 0.8667923098439358
+        }
+      ],
+      "details": [
+        {
+          "playerId": 40352,
+          "clubId": 1254,
+          "nome": "Neymar",
+          "posicaoPes": "MAT",
+          "pes": 83,
+          "imlmAtual": 83,
+          "calibrado": 83,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 114935,
+          "clubId": 389,
+          "nome": "Morgan Gibbs-White",
+          "posicaoPes": "MAT",
+          "pes": 80,
+          "imlmAtual": 76,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 140816,
+          "clubId": 389,
+          "nome": "Elliot Anderson",
+          "posicaoPes": "MAT",
+          "pes": 74,
+          "imlmAtual": 71,
+          "calibrado": 74,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 101504,
+          "clubId": 208,
+          "nome": "Mateus Mané",
+          "posicaoPes": "MAT",
+          "pes": 74,
+          "imlmAtual": 73,
+          "calibrado": 74,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 140723,
+          "clubId": 208,
+          "nome": "Tawanda Chirewa",
+          "posicaoPes": "MAT",
+          "pes": 74,
+          "imlmAtual": 73,
+          "calibrado": 74,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 54265,
+          "clubId": 289,
+          "nome": "Reinier",
+          "posicaoPes": "MAT",
+          "pes": 78,
+          "imlmAtual": 77,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 55095,
+          "clubId": 289,
+          "nome": "Gustavo Scarpa",
+          "posicaoPes": "MAT",
+          "pes": 79,
+          "imlmAtual": 79,
+          "calibrado": 79,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 119142,
+          "clubId": 289,
+          "nome": "Igor Gomes",
+          "posicaoPes": "MAT",
+          "pes": 78,
+          "imlmAtual": 77,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 128881,
+          "clubId": 289,
+          "nome": "Mateus Iseppe",
+          "posicaoPes": "MAT",
+          "pes": 71,
+          "imlmAtual": 73,
+          "calibrado": 71,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 1073864466,
+          "clubId": 289,
+          "nome": "Mamady Cissé",
+          "posicaoPes": "MAT",
+          "pes": 72,
+          "imlmAtual": 72,
+          "calibrado": 72,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        }
+      ]
+    },
+    "MEIO": {
+      "samples": 10,
+      "alpha": 0.5,
+      "features": [
+        "lowpass",
+        "loftpass",
+        "ball_ctrl",
+        "tight_pos",
+        "drib",
+        "stamina",
+        "def",
+        "ball_win",
+        "aggres",
+        "atk",
+        "finish",
+        "speed",
+        "exp_pwr",
+        "kick_pwr",
+        "phys_cont",
+        "body_ctrl",
+        "form",
+        "injury",
+        "weak_use",
+        "weak_acc"
+      ],
+      "trainMetrics": {
+        "count": 10,
+        "ok": 10,
+        "max_abs_error": 0,
+        "mae": 0.0
+      },
+      "leaveOneOutMetrics": {
+        "count": 10,
+        "ok": 2,
+        "max_abs_error": 4,
+        "mae": 1.6
+      },
+      "interceptScaled": 77.1,
+      "topCoefficients": [
+        {
+          "feature": "exp_pwr",
+          "scaledCoef": 0.837214027865532,
+          "rawWeightApprox": 0.18178839791095566
+        },
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": 0.655080062415208,
+          "rawWeightApprox": 0.1891053251880886
+        },
+        {
+          "feature": "stamina",
+          "scaledCoef": -0.6204066373381772,
+          "rawWeightApprox": -0.271805082742147
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.6004307563150414,
+          "rawWeightApprox": 0.16808834190417557
+        },
+        {
+          "feature": "drib",
+          "scaledCoef": 0.5994681447434774,
+          "rawWeightApprox": 0.09245592677522371
+        },
+        {
+          "feature": "loftpass",
+          "scaledCoef": 0.5238305457567648,
+          "rawWeightApprox": 0.16490933349065484
+        },
+        {
+          "feature": "atk",
+          "scaledCoef": 0.507818110861059,
+          "rawWeightApprox": 0.07004554314792376
+        },
+        {
+          "feature": "injury",
+          "scaledCoef": 0.4976922894850346,
+          "rawWeightApprox": 1.2442307237125865
+        },
+        {
+          "feature": "phys_cont",
+          "scaledCoef": 0.444715236587323,
+          "rawWeightApprox": 0.07600026931613439
+        },
+        {
+          "feature": "form",
+          "scaledCoef": -0.36829436830200696,
+          "rawWeightApprox": -0.30585182543070205
+        }
+      ],
+      "details": [
+        {
+          "playerId": 140306,
+          "clubId": 1246,
+          "nome": "Cristian Medina",
+          "posicaoPes": "MLG",
+          "pes": 81,
+          "imlmAtual": 77,
+          "calibrado": 81,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 104527,
+          "clubId": 274,
+          "nome": "Gerson",
+          "posicaoPes": "MLG",
+          "pes": 81,
+          "imlmAtual": 79,
+          "calibrado": 81,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 137993,
+          "clubId": 289,
+          "nome": "Alan Franco",
+          "posicaoPes": "MLG",
+          "pes": 78,
+          "imlmAtual": 77,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 111200,
+          "clubId": 289,
+          "nome": "Maycon",
+          "posicaoPes": "VOL",
+          "pes": 80,
+          "imlmAtual": 72,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": -8
+        },
+        {
+          "playerId": 45641,
+          "clubId": 1246,
+          "nome": "Allan",
+          "posicaoPes": "VOL",
+          "pes": 80,
+          "imlmAtual": 80,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 55082,
+          "clubId": 1246,
+          "nome": "Danilo",
+          "posicaoPes": "VOL",
+          "pes": 80,
+          "imlmAtual": 78,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 63718,
+          "clubId": 1246,
+          "nome": "Wallace Davi",
+          "posicaoPes": "VOL",
+          "pes": 70,
+          "imlmAtual": 72,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 1073857535,
+          "clubId": 1246,
+          "nome": "Arthur Novaes",
+          "posicaoPes": "VOL",
+          "pes": 71,
+          "imlmAtual": 72,
+          "calibrado": 71,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 131774,
+          "clubId": 4108,
+          "nome": "Higor Meritão",
+          "posicaoPes": "VOL",
+          "pes": 76,
+          "imlmAtual": 77,
+          "calibrado": 76,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 132945,
+          "clubId": 4108,
+          "nome": "Vinicius Balieiro",
+          "posicaoPes": "VOL",
+          "pes": 74,
+          "imlmAtual": 74,
+          "calibrado": 74,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        }
+      ]
+    },
+    "MEIO_LADO": {
+      "samples": 14,
+      "alpha": 2.0,
+      "features": [
+        "speed",
+        "exp_pwr",
+        "stamina",
+        "drib",
+        "ball_ctrl",
+        "tight_pos",
+        "lowpass",
+        "loftpass",
+        "atk",
+        "def",
+        "ball_win",
+        "body_ctrl",
+        "form",
+        "injury"
+      ],
+      "trainMetrics": {
+        "count": 14,
+        "ok": 8,
+        "max_abs_error": 1,
+        "mae": 0.42857142857142855
+      },
+      "leaveOneOutMetrics": {
+        "count": 14,
+        "ok": 3,
+        "max_abs_error": 3,
+        "mae": 1.3571428571428572
+      },
+      "interceptScaled": 73.14285714285714,
+      "topCoefficients": [
+        {
+          "feature": "speed",
+          "scaledCoef": 1.2683830381674808,
+          "rawWeightApprox": 0.18667156445962563
+        },
+        {
+          "feature": "ball_win",
+          "scaledCoef": 1.1498774790411828,
+          "rawWeightApprox": 0.11738383546501226
+        },
+        {
+          "feature": "atk",
+          "scaledCoef": 1.146411544785526,
+          "rawWeightApprox": 0.14593104670974807
+        },
+        {
+          "feature": "def",
+          "scaledCoef": 1.024487978037953,
+          "rawWeightApprox": 0.10062481892751206
+        },
+        {
+          "feature": "exp_pwr",
+          "scaledCoef": 0.8671770646088937,
+          "rawWeightApprox": 0.11924801690212584
+        },
+        {
+          "feature": "drib",
+          "scaledCoef": 0.8236053985467946,
+          "rawWeightApprox": 0.19975365011984494
+        },
+        {
+          "feature": "tight_pos",
+          "scaledCoef": 0.7875103280235438,
+          "rawWeightApprox": 0.11907425746886653
+        },
+        {
+          "feature": "stamina",
+          "scaledCoef": 0.6947906286917962,
+          "rawWeightApprox": 0.11702385253836213
+        },
+        {
+          "feature": "ball_ctrl",
+          "scaledCoef": 0.6316286753783908,
+          "rawWeightApprox": 0.10481933283451775
+        },
+        {
+          "feature": "loftpass",
+          "scaledCoef": 0.552112193567325,
+          "rawWeightApprox": 0.09488601022652986
+        }
+      ],
+      "details": [
+        {
+          "playerId": 111986,
+          "clubId": 119,
+          "nome": "Denzel Dumfries",
+          "posicaoPes": "MLD",
+          "pes": 88,
+          "imlmAtual": 81,
+          "calibrado": 87,
+          "diffCalibrado": -1,
+          "diffAtual": -7
+        },
+        {
+          "playerId": 107686,
+          "clubId": 119,
+          "nome": "Federico Dimarco",
+          "posicaoPes": "MLE",
+          "pes": 87,
+          "imlmAtual": 81,
+          "calibrado": 87,
+          "diffCalibrado": 0,
+          "diffAtual": -6
+        },
+        {
+          "playerId": 138216,
+          "clubId": 361,
+          "nome": "Marc Aguado",
+          "posicaoPes": "MLE",
+          "pes": 67,
+          "imlmAtual": 70,
+          "calibrado": 68,
+          "diffCalibrado": 1,
+          "diffAtual": 3
+        },
+        {
+          "playerId": 113406,
+          "clubId": 4269,
+          "nome": "Ovie Ejaria",
+          "posicaoPes": "MLE",
+          "pes": 73,
+          "imlmAtual": 71,
+          "calibrado": 72,
+          "diffCalibrado": -1,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 117836,
+          "clubId": 267,
+          "nome": "Tajon Buchanan",
+          "posicaoPes": "MLD",
+          "pes": 79,
+          "imlmAtual": 79,
+          "calibrado": 79,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 140080,
+          "clubId": 180,
+          "nome": "Romain Faivre",
+          "posicaoPes": "MLD",
+          "pes": 74,
+          "imlmAtual": 72,
+          "calibrado": 74,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 138466,
+          "clubId": 413,
+          "nome": "Elies Mahmoud",
+          "posicaoPes": "MLD",
+          "pes": 66,
+          "imlmAtual": 69,
+          "calibrado": 66,
+          "diffCalibrado": 0,
+          "diffAtual": 3
+        },
+        {
+          "playerId": 100964,
+          "clubId": 182,
+          "nome": "Jimmy Cabot",
+          "posicaoPes": "MLD",
+          "pes": 75,
+          "imlmAtual": 75,
+          "calibrado": 76,
+          "diffCalibrado": 1,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 100870,
+          "clubId": 418,
+          "nome": "Florian Tardieu",
+          "posicaoPes": "MLE",
+          "pes": 69,
+          "imlmAtual": 70,
+          "calibrado": 70,
+          "diffCalibrado": 1,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 134913,
+          "clubId": 406,
+          "nome": "T. Vargas",
+          "posicaoPes": "MLD",
+          "pes": 67,
+          "imlmAtual": 68,
+          "calibrado": 68,
+          "diffCalibrado": 1,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 53796,
+          "clubId": 4046,
+          "nome": "Yonser Parra",
+          "posicaoPes": "MLD",
+          "pes": 69,
+          "imlmAtual": 69,
+          "calibrado": 69,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 122075,
+          "clubId": 4046,
+          "nome": "Joiser Arias",
+          "posicaoPes": "MLD",
+          "pes": 69,
+          "imlmAtual": 70,
+          "calibrado": 69,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 140708,
+          "clubId": 5668,
+          "nome": "Angelo Lucena",
+          "posicaoPes": "MLD",
+          "pes": 70,
+          "imlmAtual": 70,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 123866,
+          "clubId": 5669,
+          "nome": "Joantony Carmona",
+          "posicaoPes": "MLE",
+          "pes": 71,
+          "imlmAtual": 72,
+          "calibrado": 71,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        }
+      ]
+    },
+    "PONTA": {
+      "samples": 10,
+      "alpha": 0.1,
+      "features": [
+        "atk",
+        "ball_ctrl",
+        "tight_pos",
+        "drib",
+        "speed",
+        "exp_pwr",
+        "finish",
+        "lowpass",
+        "loftpass",
+        "swerve",
+        "stamina",
+        "body_ctrl",
+        "form",
+        "weak_use",
+        "weak_acc"
+      ],
+      "trainMetrics": {
+        "count": 10,
+        "ok": 10,
+        "max_abs_error": 0,
+        "mae": 0.0
+      },
+      "leaveOneOutMetrics": {
+        "count": 10,
+        "ok": 6,
+        "max_abs_error": 1,
+        "mae": 0.4
+      },
+      "interceptScaled": 75.0,
+      "topCoefficients": [
+        {
+          "feature": "speed",
+          "scaledCoef": 0.776855647840138,
+          "rawWeightApprox": 0.2970381809345599
+        },
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": 0.713732373170563,
+          "rawWeightApprox": 0.11664536212434576
+        },
+        {
+          "feature": "form",
+          "scaledCoef": -0.6517540927924023,
+          "rawWeightApprox": -0.8344856052463435
+        },
+        {
+          "feature": "exp_pwr",
+          "scaledCoef": 0.570356052149229,
+          "rawWeightApprox": 0.19574569035182812
+        },
+        {
+          "feature": "loftpass",
+          "scaledCoef": 0.556080163848782,
+          "rawWeightApprox": 0.11282975524767497
+        },
+        {
+          "feature": "finish",
+          "scaledCoef": 0.5250118837183069,
+          "rawWeightApprox": 0.09137899381320298
+        },
+        {
+          "feature": "atk",
+          "scaledCoef": 0.48223824615220856,
+          "rawWeightApprox": 0.16799565342416567
+        },
+        {
+          "feature": "swerve",
+          "scaledCoef": 0.33189811998337704,
+          "rawWeightApprox": 0.0701889737888014
+        },
+        {
+          "feature": "tight_pos",
+          "scaledCoef": 0.31865465394899717,
+          "rawWeightApprox": 0.1027918238545152
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.3060999560013413,
+          "rawWeightApprox": 0.06703633112961994
+        }
+      ],
+      "details": [
+        {
+          "playerId": 120134,
+          "clubId": 1254,
+          "nome": "Robinho Junior",
+          "posicaoPes": "PTD",
+          "pes": 73,
+          "imlmAtual": 73,
+          "calibrado": 73,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 100499,
+          "clubId": 289,
+          "nome": "Gabriel Veneno",
+          "posicaoPes": "PTD",
+          "pes": 70,
+          "imlmAtual": 71,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": 1
+        },
+        {
+          "playerId": 123428,
+          "clubId": 289,
+          "nome": "Junior Santos",
+          "posicaoPes": "PTD",
+          "pes": 77,
+          "imlmAtual": 75,
+          "calibrado": 77,
+          "diffCalibrado": 0,
+          "diffAtual": -2
+        },
+        {
+          "playerId": 63030,
+          "clubId": 289,
+          "nome": "Dudu",
+          "posicaoPes": "PTE",
+          "pes": 78,
+          "imlmAtual": 75,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 129030,
+          "clubId": 289,
+          "nome": "Tomás Cuello",
+          "posicaoPes": "PTE",
+          "pes": 78,
+          "imlmAtual": 74,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 47244,
+          "clubId": 2453,
+          "nome": "Ruan Pablo",
+          "posicaoPes": "PTD",
+          "pes": 70,
+          "imlmAtual": 69,
+          "calibrado": 70,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 1073877592,
+          "clubId": 2453,
+          "nome": "Lyan",
+          "posicaoPes": "PTD",
+          "pes": 69,
+          "imlmAtual": 69,
+          "calibrado": 69,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 125301,
+          "clubId": 2453,
+          "nome": "Ademir",
+          "posicaoPes": "PTD",
+          "pes": 78,
+          "imlmAtual": 74,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -4
+        },
+        {
+          "playerId": 117858,
+          "clubId": 2453,
+          "nome": "Mateo Sanabria",
+          "posicaoPes": "PTE",
+          "pes": 78,
+          "imlmAtual": 75,
+          "calibrado": 78,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        },
+        {
+          "playerId": 122990,
+          "clubId": 2453,
+          "nome": "Erick Pulga",
+          "posicaoPes": "PTE",
+          "pes": 79,
+          "imlmAtual": 76,
+          "calibrado": 79,
+          "diffCalibrado": 0,
+          "diffAtual": -3
+        }
+      ]
+    },
+    "ZC": {
+      "samples": 10,
+      "alpha": 2.0,
+      "features": [
+        "def",
+        "ball_win",
+        "aggres",
+        "header",
+        "jump",
+        "phys_cont",
+        "body_ctrl",
+        "speed",
+        "exp_pwr",
+        "stamina",
+        "height",
+        "weight",
+        "form",
+        "injury",
+        "ball_ctrl",
+        "lowpass",
+        "loftpass"
+      ],
+      "trainMetrics": {
+        "count": 10,
+        "ok": 10,
+        "max_abs_error": 0,
+        "mae": 0.0
+      },
+      "leaveOneOutMetrics": {
+        "count": 10,
+        "ok": 5,
+        "max_abs_error": 1,
+        "mae": 0.5
+      },
+      "interceptScaled": 77.0,
+      "topCoefficients": [
+        {
+          "feature": "def",
+          "scaledCoef": 0.6164374942374391,
+          "rawWeightApprox": 0.15125308109105873
+        },
+        {
+          "feature": "lowpass",
+          "scaledCoef": 0.5846109785407883,
+          "rawWeightApprox": 0.11119824870405422
+        },
+        {
+          "feature": "ball_ctrl",
+          "scaledCoef": 0.563816005997935,
+          "rawWeightApprox": 0.0981329012192674
+        },
+        {
+          "feature": "header",
+          "scaledCoef": 0.5276326938845088,
+          "rawWeightApprox": 0.138850708916976
+        },
+        {
+          "feature": "aggres",
+          "scaledCoef": 0.525182626259647,
+          "rawWeightApprox": 0.115824062985159
+        },
+        {
+          "feature": "ball_win",
+          "scaledCoef": 0.5149399938337393,
+          "rawWeightApprox": 0.15490858412090378
+        },
+        {
+          "feature": "body_ctrl",
+          "scaledCoef": 0.42286379879982317,
+          "rawWeightApprox": 0.07643087687193262
+        },
+        {
+          "feature": "speed",
+          "scaledCoef": 0.4189243982930095,
+          "rawWeightApprox": 0.16053217823057703
+        },
+        {
+          "feature": "loftpass",
+          "scaledCoef": 0.3803997251072477,
+          "rawWeightApprox": 0.059401212482744256
+        },
+        {
+          "feature": "phys_cont",
+          "scaledCoef": 0.33194233647804966,
+          "rawWeightApprox": 0.10803802823626872
+        }
+      ],
+      "details": [
+        {
+          "playerId": 114593,
+          "clubId": 45,
+          "nome": "Bremer",
+          "posicaoPes": "ZC",
+          "pes": 85,
+          "imlmAtual": 85,
+          "calibrado": 85,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 43989,
+          "clubId": 45,
+          "nome": "Danilo",
+          "posicaoPes": "ZC",
+          "pes": 80,
+          "imlmAtual": 80,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 117505,
+          "clubId": 136,
+          "nome": "Carlos Cuesta",
+          "posicaoPes": "ZC",
+          "pes": 80,
+          "imlmAtual": 80,
+          "calibrado": 80,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 60181,
+          "clubId": 1252,
+          "nome": "Gabriel Mercado",
+          "posicaoPes": "ZC",
+          "pes": 77,
+          "imlmAtual": 79,
+          "calibrado": 77,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 45756,
+          "clubId": 137,
+          "nome": "Gustavo Gómez",
+          "posicaoPes": "ZC",
+          "pes": 81,
+          "imlmAtual": 81,
+          "calibrado": 81,
+          "diffCalibrado": 0,
+          "diffAtual": 0
+        },
+        {
+          "playerId": 381932,
+          "clubId": 1252,
+          "nome": "Clayton Sampaio",
+          "posicaoPes": "ZC",
+          "pes": 72,
+          "imlmAtual": 75,
+          "calibrado": 72,
+          "diffCalibrado": 0,
+          "diffAtual": 3
+        },
+        {
+          "playerId": 101250,
+          "clubId": 1252,
+          "nome": "Pedro Kauã",
+          "posicaoPes": "ZC",
+          "pes": 71,
+          "imlmAtual": 73,
+          "calibrado": 71,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 112606,
+          "clubId": 1252,
+          "nome": "João Dalla Corte",
+          "posicaoPes": "ZC",
+          "pes": 72,
+          "imlmAtual": 74,
+          "calibrado": 72,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        },
+        {
+          "playerId": 121268,
+          "clubId": 1252,
+          "nome": "Victor Gabriel",
+          "posicaoPes": "ZC",
+          "pes": 76,
+          "imlmAtual": 75,
+          "calibrado": 76,
+          "diffCalibrado": 0,
+          "diffAtual": -1
+        },
+        {
+          "playerId": 122484,
+          "clubId": 1252,
+          "nome": "Juninho",
+          "posicaoPes": "ZC",
+          "pes": 76,
+          "imlmAtual": 78,
+          "calibrado": 76,
+          "diffCalibrado": 0,
+          "diffAtual": 2
+        }
+      ]
+    }
+  }
+}

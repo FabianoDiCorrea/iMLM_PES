@@ -45,8 +45,24 @@ struct Player {
     uint8_t stamina = 0;
     uint8_t speed = 0;
     uint8_t aggres = 0;
+    uint8_t tight_pos = 0;
+
+    uint8_t weak_use = 0;
+    uint8_t weak_acc = 0;
+    uint8_t form = 0;
+    uint8_t injury = 0;
+    uint8_t play_attit = 0;
+    uint8_t play_style = 0;
+    uint8_t star = 0;
+    uint8_t strong_foot = 0;
+    uint8_t strong_hand = 0;
+    uint8_t dribble_motion = 0;
+    uint8_t playable_pos[13] = {0};
+    uint8_t com_style[7] = {0};
+    uint8_t play_skill[41] = {0};
 
     int overall = 0;
+    int overall_by_position[13] = {0};
     int global_index = -1;
     int team_index = -1;
     int roster_slot = -1;
